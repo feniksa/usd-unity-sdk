@@ -1,0 +1,30 @@
+/*!
+\page ipc_page_front Ipc : USD data interprocess synchronization
+\if ( PIXAR_MFB_BUILD )
+\mainpage  Ipc : USD data interprocess synchronization
+\publicLib
+\endif
+
+\anchor ipc_mainpage
+
+\li RprIpcClient and \li RprIpcServer implementations of remote UsdStage data synchronization protocol.
+
+\section ipc_protocol Protocol
+
+UsdStage data synchronization protocol key components:
+
+- <b>Control stream.</b> This stream is used for controlling the server from the client. Server supports such commands:
+  - <b>connect</b> <i>clientDataPort</i>: used to establish connection with the server, clientDataPort is the port of the client's data stream socket (see later).
+  - <b>disconnect</b>: close connection with the current client.
+  - <b>shutdown</b>: close control socket and shutdown the server.
+  - <b>ping</b>: WIP
+
+  Processing of the command with unknown name is delegated to the server user. Such commands expected to be in such format: <i>customCommandName</i> <i>payload</i>.
+
+- <b>Data stream.</b> This stream is used for sending all kinds of data from the server to the client. Client should support such commands:
+  - <b>layer</b> <i>layerPath</i> <i>encodedLayer</i>: either define a new layer or update the previously defined layer with <i>layerPath</i> path, <i>encodedLayer</i> is a string encoded UsdStage (.usda format).
+  - <b>layerRemove</b> <i>layerPath</i>: indicate that the layer with <i>layerPath</i> path has been removed.
+
+As a result RprIpcClient's stage will contain each layer as a separate sublayer. For now order of sublayers is arbitrary.
+
+*/

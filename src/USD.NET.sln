@@ -4,8 +4,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.1231
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USD.NET", "USD.NET\USD.NET.csproj", "{7706D7AC-A3AB-436A-A6EB-8C08B42D9A44}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C8A17861-CBA7-45FC-A3DE-D376AF0E8CCC} = {C8A17861-CBA7-45FC-A3DE-D376AF0E8CCC}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UsdCs", "UsdCs\UsdCs.vcxproj", "{C8A17861-CBA7-45FC-A3DE-D376AF0E8CCC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{53C46CDF-23A7-45B7-A8A1-3DA8E16C38E2} = {53C46CDF-23A7-45B7-A8A1-3DA8E16C38E2}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swig", "Swig\Swig.csproj", "{8F7549F5-D206-49C9-B3F5-32EC0873E49C}"
 EndProject

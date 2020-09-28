@@ -8,8 +8,8 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-#ifndef SWIG_USDIPC_WRAP_H_
-#define SWIG_USDIPC_WRAP_H_
+#ifndef SWIG_UsdCs_WRAP_H_
+#define SWIG_UsdCs_WRAP_H_
 
 class SwigDirector_DiagnosticHandler : public DiagnosticHandler, public Swig::Director {
 

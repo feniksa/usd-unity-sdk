@@ -17,7 +17,7 @@ SET PATH=%USD_LOCATION%\lib;%USD_LOCATION%\bin;%ORIGPATH%
 
 ECHO.
 ECHO Running SWIG code generation...
-swig.exe -w401 -w516 -w503 -namespace pxr -I%USD_LOCATION%\include -I.\src\UsdCs\ -I.\ -c++ -csharp -outdir .\src\USD.NET -o .\src\UsdCs\usdCs_wrap.cpp .\src\Swig\usdCs.i
+swig.exe -w401 -w516 -w503 -namespace pxr -I%USD_LOCATION%\include -I.\src\UsdCs\ -I.\ -c++ -csharp -outdir .\src\USD.NET -o .\src\UsdCs\usdCs_wrap.cpp .\src\Swig\UsdCs.i
 IF NOT %ERRORLEVEL% == 0 (
   EXIT /B
 )

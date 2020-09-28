@@ -361,6 +361,7 @@
             Informational messages sent from the USD API.
             </summary>
         </member>
+<<<<<<< HEAD
         <member name="T:USD.NET.Unity.PreserveAttribute">
             <summary>
             Prevent a method, class, field, or property from being stripped by bytecode optimization.
@@ -370,6 +371,8 @@
             also be stripped in this way. To prevent this, this attribute is copied from Unity.
             </remarks>
         </member>
+=======
+>>>>>>> b2334b34 (Update binding)
         <member name="F:USD.NET.Unity.UnityTypeConverter.basisChange">
             <summary>
             Configurable matrix used for change of basis from USD to Unity and vice versa (change handedness).

@@ -1,4 +1,3 @@
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -58,4 +57,3 @@ namespace pxr {
     public abstract void OnFatalError(string msg);
   }
 
-}

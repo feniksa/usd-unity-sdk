@@ -6077,6 +6077,7 @@ bool SetFusedDisplayColor(UsdPrim prim, VtVec4fArray values, UsdTimeCode time) {
 
 
 
+  #include "winsock2.h"
   #include "../USDIPC/server.h"
 
 

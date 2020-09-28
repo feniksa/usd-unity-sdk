@@ -84,6 +84,7 @@ private:
 public:
     class Layer {
     public:
+		RPR_IPC_API
         Layer();
 
         /// Get UsdStage of the current layer. The returned stage can be edited

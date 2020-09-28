@@ -146,7 +146,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);IPC_EXPORTS;-DIPC_EXPORTS=1</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\thirdparty\cppzmq\;$(ProjectDir)\thirdparty\libzmq\include;$(ProjectDir)\thirdparty\libzmq\;$(USD_LOCATION)\include\OpenEXR;$(USD_LOCATION)\include\boost-1_65_1;$(USD_LOCATION)\include$(USD_LOCATION)\include\OpenEXR;$(USD_LOCATION)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\thirdparty\cppzmq\;$(ProjectDir)\thirdparty\libzmq\include;$(ProjectDir)\thirdparty\libzmq\;$(USD_LOCATION)\include\OpenEXR;$(USD_LOCATION)\include\boost-1_65_1;$(USD_LOCATION)\include\OpenEXR;$(USD_LOCATION)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

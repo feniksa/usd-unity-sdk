@@ -8,8 +8,8 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-#ifndef SWIG_USDIPC_WRAP_H_
-#define SWIG_USDIPC_WRAP_H_
+#ifndef SWIG_UsdCs_WRAP_H_
+#define SWIG_UsdCs_WRAP_H_
 
 class SwigDirector_TaskCallback : public TaskCallback, public Swig::Director {
 

@@ -244,7 +244,7 @@ static void SWIGUNUSED SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpExcepti
 #ifdef __cplusplus
 extern "C" 
 #endif
-SWIGEXPORT void SWIGSTDCALL SWIGRegisterExceptionCallbacks_UsdCs(
+SWIGEXPORT void SWIGSTDCALL SWIGRegisterExceptionCallbacks_USDIPC(
                                                 SWIG_CSharpExceptionCallback_t applicationCallback,
                                                 SWIG_CSharpExceptionCallback_t arithmeticCallback,
                                                 SWIG_CSharpExceptionCallback_t divideByZeroCallback, 
@@ -272,7 +272,7 @@ SWIGEXPORT void SWIGSTDCALL SWIGRegisterExceptionCallbacks_UsdCs(
 #ifdef __cplusplus
 extern "C" 
 #endif
-SWIGEXPORT void SWIGSTDCALL SWIGRegisterExceptionArgumentCallbacks_UsdCs(
+SWIGEXPORT void SWIGSTDCALL SWIGRegisterExceptionArgumentCallbacks_USDIPC(
                                                 SWIG_CSharpExceptionArgumentCallback_t argumentCallback,
                                                 SWIG_CSharpExceptionArgumentCallback_t argumentNullCallback,
                                                 SWIG_CSharpExceptionArgumentCallback_t argumentOutOfRangeCallback) {
@@ -290,7 +290,7 @@ static SWIG_CSharpStringHelperCallback SWIG_csharp_string_callback = NULL;
 #ifdef __cplusplus
 extern "C" 
 #endif
-SWIGEXPORT void SWIGSTDCALL SWIGRegisterStringCallback_UsdCs(SWIG_CSharpStringHelperCallback callback) {
+SWIGEXPORT void SWIGSTDCALL SWIGRegisterStringCallback_USDIPC(SWIG_CSharpStringHelperCallback callback) {
   SWIG_csharp_string_callback = callback;
 }
 
@@ -6075,6 +6075,9 @@ bool SetFusedDisplayColor(UsdPrim prim, VtVec4fArray values, UsdTimeCode time) {
   return rgbPv.Set(rgb, time) && alphaPv.Set(alpha, time);
 }
 
+
+
+  #include "../USDIPC/server.h"
 
 
 
@@ -100790,6 +100793,135 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SetFusedDisplayColor(void * jarg1
   result = (bool)SetFusedDisplayColor(arg1,arg2,arg3);
   jresult = result; 
   return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_RprIpcServer_Listener_ProcessCommand(void * jarg1, char * jarg2, void * jarg3, unsigned long jarg4) {
+  unsigned int jresult ;
+  RprIpcServer::Listener *arg1 = (RprIpcServer::Listener *) 0 ;
+  std::string *arg2 = 0 ;
+  uint8_t *arg3 = (uint8_t *) 0 ;
+  size_t arg4 ;
+  bool result;
+  
+  arg1 = (RprIpcServer::Listener *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  arg3 = (uint8_t *)jarg3; 
+  arg4 = (size_t)jarg4; 
+  result = (bool)(arg1)->ProcessCommand((std::string const &)*arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_RprIpcServer_Listener(void * jarg1) {
+  RprIpcServer::Listener *arg1 = (RprIpcServer::Listener *) 0 ;
+  
+  arg1 = (RprIpcServer::Listener *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_RprIpcServer(void * jarg1) {
+  void * jresult ;
+  RprIpcServer::Listener *arg1 = (RprIpcServer::Listener *) 0 ;
+  RprIpcServer *result = 0 ;
+  
+  arg1 = (RprIpcServer::Listener *)jarg1; 
+  result = (RprIpcServer *)new RprIpcServer(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_RprIpcServer(void * jarg1) {
+  RprIpcServer *arg1 = (RprIpcServer *) 0 ;
+  
+  arg1 = (RprIpcServer *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_RprIpcServer_AddLayer(void * jarg1, void * jarg2) {
+  void * jresult ;
+  RprIpcServer *arg1 = (RprIpcServer *) 0 ;
+  SdfPath *arg2 = 0 ;
+  RprIpcServer::Layer *result = 0 ;
+  
+  arg1 = (RprIpcServer *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = (RprIpcServer::Layer *)(arg1)->AddLayer((SdfPath const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_RprIpcServer_OnLayerEdit(void * jarg1, void * jarg2, void * jarg3) {
+  RprIpcServer *arg1 = (RprIpcServer *) 0 ;
+  SdfPath *arg2 = 0 ;
+  RprIpcServer::Layer *arg3 = (RprIpcServer::Layer *) 0 ;
+  
+  arg1 = (RprIpcServer *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return ;
+  } 
+  arg3 = (RprIpcServer::Layer *)jarg3; 
+  (arg1)->OnLayerEdit((SdfPath const &)*arg2,arg3);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_RprIpcServer_RemoveLayer(void * jarg1, void * jarg2) {
+  RprIpcServer *arg1 = (RprIpcServer *) 0 ;
+  SdfPath *arg2 = 0 ;
+  
+  arg1 = (RprIpcServer *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return ;
+  } 
+  (arg1)->RemoveLayer((SdfPath const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_RprIpcServer_Layer() {
+  void * jresult ;
+  RprIpcServer::Layer *result = 0 ;
+  
+  result = (RprIpcServer::Layer *)new RprIpcServer::Layer();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_RprIpcServer_Layer_GetStage(void * jarg1) {
+  void * jresult ;
+  RprIpcServer::Layer *arg1 = (RprIpcServer::Layer *) 0 ;
+  SwigValueWrapper< UsdStageWeakPtr > result;
+  
+  arg1 = (RprIpcServer::Layer *)jarg1; 
+  result = (arg1)->GetStage();
+  jresult = new UsdStagePtr((const UsdStagePtr &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_RprIpcServer_Layer(void * jarg1) {
+  RprIpcServer::Layer *arg1 = (RprIpcServer::Layer *) 0 ;
+  
+  arg1 = (RprIpcServer::Layer *)jarg1; 
+  delete arg1;
 }
 
 

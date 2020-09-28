@@ -152,13 +152,13 @@
       <AdditionalIncludeDirectories>$(SolutionDir)\USDIPC\thirdparty\cppzmq;$(SolutionDir)\USDIPC\thirdparty\libzmq;$(SolutionDir)\USDIPC\thirdparty\libzmq\include;$(USD_LOCATION)\include\OpenEXR;$(USD_LOCATION)\include\boost-1_65_1;$(USD_LOCATION)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <PreprocessorDefinitions>_WINDLL;NDEBUG;MFB_PACKAGE_NAME=usdCs;MFB_ALT_PACKAGE_NAME=usdCs;MFB_PACKAGE_MODULE=UsdCs;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;NOMINMAX;TF_NO_GNU_EXT;YY_NO_UNISTD_H;BOOST_ALL_DYN_LINK;OPENEXR_DLL;BUILD_COMPONENT_SRC_PREFIX="";GL_GLEXT_PROTOTYPES;GLX_GLXEXT_PROTOTYPES;BOOST_PYTHON_NO_PY_SIGNATURES;BUILD_OPTLEVEL_OPT;OPENEXR_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDLL;NDEBUG;MFB_PACKAGE_NAME=usdCs;MFB_ALT_PACKAGE_NAME=usdCs;MFB_PACKAGE_MODULE=UsdCs;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;NOMINMAX;TF_NO_GNU_EXT;YY_NO_UNISTD_H;BOOST_ALL_DYN_LINK;OPENEXR_DLL;BUILD_COMPONENT_SRC_PREFIX="";GL_GLEXT_PROTOTYPES;GLX_GLXEXT_PROTOTYPES;BOOST_PYTHON_NO_PY_SIGNATURES;BUILD_OPTLEVEL_OPT;-DIPC_EXPORTS=0;WIN32_LEAN_AND_MEAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>usd_ms.lib;Half.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>usd_ms.lib;Half.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;USDIPC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\USDIPC\x64\Release;$(USD_LOCATION)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

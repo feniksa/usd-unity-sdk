@@ -276,6 +276,14 @@ class VtArray : public Vt_ArrayBase {
         other._data = nullptr;
     }
 
+#if 0 // USD.NET
+    /// Initialize array from the contents of a \p initializerList.
+    VtArray(std::initializer_list<ELEM> initializerList)
+        : VtArray() {
+        assign(initializerList);
+    }
+#endif // USD.NET
+
     /// Copy assign from \p other.  This array shares underlying data with
     /// \p other.
     VtArray &operator=(VtArray const &other) {
@@ -297,6 +305,14 @@ class VtArray : public Vt_ArrayBase {
         other._data = nullptr;
         return *this;
     }
+
+#if 0 // USD.NET
+    /// Replace current array contents with those in \p initializerList 
+    VtArray &operator=(std::initializer_list<ELEM> initializerList) {
+        this->assign(initializerList.begin(), initializerList.end());
+        return *this;
+    }
+#endif // USD.NET
 
     /// Create an array filled with \p n copies of \p value.
     explicit VtArray(size_t n, value_type const &value = value_type())
@@ -555,6 +571,17 @@ class VtArray : public Vt_ArrayBase {
         std::fill(begin(), end(), fill);
     }
 
+#if 0 // USD.NET
+    /// Assign array contents via intializer list
+    /// Equivalent to:
+    /// \code
+    /// array.assign(list.begin(), list.end());
+    /// \endcode
+    void assign(std::initializer_list<ELEM> initializerList) {
+	assign(initializerList.begin(), initializerList.end());
+    }
+#endif // USD.NET
+
     /// Swap the contents of this array with \p other.
     void swap(VtArray &other) { 
         std::swap(_data, other._data);
@@ -742,7 +769,7 @@ hash_value(VtArray<ELEM> const &array) {
 #if 0 // USD.NET
 // Specialize traits so others can figure out that VtArray is an array.
 template <typename T>
-struct VtIsArray< VtArray <T> > : public VtTrueType {};
+struct VtIsArray< VtArray <T> > : public std::true_type {};
 
 // free functions for operators combining scalar and array types
 ARCH_PRAGMA_PUSH

@@ -66,7 +66,7 @@ public:
   virtual void IssueFatalError(TfCallContext const &context, std::string const &msg) {
     DiagnosticHandler* handler = DiagnosticHandler::GetGlobalHandler();
     if (handler != nullptr) {
-      handler->OnError(msg.c_str());
+      handler->OnFatalError(msg.c_str());
     } else {
       fprintf(stderr, "FATAL ERROR: %s\n", msg.c_str());
     }
@@ -100,7 +100,7 @@ std::once_flag reg;
 #if defined(_WIN64)
 BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved) {
 #endif
-#if defined(__APPLE__)
+#if defined(__APPLE__) || defined(__linux__)
 __attribute__((constructor)) void DllMain() {
 #endif
   std::call_once(reg, [] {

@@ -12,6 +12,5 @@ copy /y "src\UsdCs\x64\Release\UsdCs.pdb" "inst\"
 copy /y "src\USDIPC\x64\Release\USDIPC.dll" "inst\"
 copy /y "src\USDIPC\x64\Release\USDIPC.pdb" "inst\"
 
-
-xcopy /Y "inst\USD.NET.*" "unity-assetpackage\Assets\UsdUnitySdk\Plugins\"
-xcopy /Y "inst\UsdCs.*" "unity-assetpackage\Assets\UsdUnitySdk\Plugins\x86_64\"
+xcopy /Y "inst\USD.NET.*" "package\com.unity.formats.usd\Runtime\Plugins\"
+xcopy /Y "inst\UsdCs.*" "package\com.unity.formats.usd\Runtime\Plugins\x86_64\"

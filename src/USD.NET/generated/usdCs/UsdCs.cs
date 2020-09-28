@@ -345,6 +345,11 @@ public class UsdCs {
     return ret;
   }
 
+  public static bool TfDoubleToString(double d, string buffer, int len, bool emitTrailingZero) {
+    bool ret = UsdCsPINVOKE.TfDoubleToString(d, buffer, len, emitTrailingZero);
+    return ret;
+  }
+
   public static string TfStringGlobToRegex(string s) {
     string ret = UsdCsPINVOKE.TfStringGlobToRegex(s);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -404,24 +409,6 @@ public class UsdCs {
 
   public static uint hash_value(TfToken x) {
     uint ret = UsdCsPINVOKE.hash_value__SWIG_0(TfToken.getCPtr(x));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static JsValue JsParseString(string data, JsParseError error) {
-    JsValue ret = new JsValue(UsdCsPINVOKE.JsParseString__SWIG_0(data, JsParseError.getCPtr(error)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static JsValue JsParseString(string data) {
-    JsValue ret = new JsValue(UsdCsPINVOKE.JsParseString__SWIG_1(data), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static string JsWriteToString(JsValue value) {
-    string ret = UsdCsPINVOKE.JsWriteToString(JsValue.getCPtr(value));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1467,6 +1454,12 @@ public class UsdCs {
     return ret;
   }
 
+  public static bool GfFitPlaneToPoints(GfVec3dVector points, GfPlane fitPlane) {
+    bool ret = UsdCsPINVOKE.GfFitPlaneToPoints(GfVec3dVector.getCPtr(points), GfPlane.getCPtr(fitPlane));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static uint hash_value(GfFrustum f) {
     uint ret = UsdCsPINVOKE.hash_value__SWIG_29(GfFrustum.getCPtr(f));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -2190,25 +2183,187 @@ public class UsdCs {
     return ret;
   }
 
+  public static string NdrGetIdentifierString(TfToken id) {
+    string ret = UsdCsPINVOKE.NdrGetIdentifierString(TfToken.getCPtr(id));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static NdrNodeDiscoveryResultVector NdrFsHelpersDiscoverNodes(StdStringVector searchPaths, StdStringVector allowedExtensions, bool followSymlinks, NdrDiscoveryPluginContext context) {
+    NdrNodeDiscoveryResultVector ret = new NdrNodeDiscoveryResultVector(UsdCsPINVOKE.NdrFsHelpersDiscoverNodes__SWIG_0(StdStringVector.getCPtr(searchPaths), StdStringVector.getCPtr(allowedExtensions), followSymlinks, NdrDiscoveryPluginContext.getCPtr(context)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static NdrNodeDiscoveryResultVector NdrFsHelpersDiscoverNodes(StdStringVector searchPaths, StdStringVector allowedExtensions, bool followSymlinks) {
+    NdrNodeDiscoveryResultVector ret = new NdrNodeDiscoveryResultVector(UsdCsPINVOKE.NdrFsHelpersDiscoverNodes__SWIG_1(StdStringVector.getCPtr(searchPaths), StdStringVector.getCPtr(allowedExtensions), followSymlinks), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static NdrNodeDiscoveryResultVector NdrFsHelpersDiscoverNodes(StdStringVector searchPaths, StdStringVector allowedExtensions) {
+    NdrNodeDiscoveryResultVector ret = new NdrNodeDiscoveryResultVector(UsdCsPINVOKE.NdrFsHelpersDiscoverNodes__SWIG_2(StdStringVector.getCPtr(searchPaths), StdStringVector.getCPtr(allowedExtensions)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static bool SdfIsDefiningSpecifier(SdfSpecifier spec) {
     bool ret = UsdCsPINVOKE.SdfIsDefiningSpecifier((int)spec);
     return ret;
   }
 
+  public static SWIGTYPE_p_TfEnum SdfDefaultUnit(TfToken typeName) {
+    SWIGTYPE_p_TfEnum ret = new SWIGTYPE_p_TfEnum(UsdCsPINVOKE.SdfDefaultUnit__SWIG_0(TfToken.getCPtr(typeName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_TfEnum SdfDefaultUnit(SWIGTYPE_p_TfEnum unit) {
+    SWIGTYPE_p_TfEnum ret = new SWIGTYPE_p_TfEnum(UsdCsPINVOKE.SdfDefaultUnit__SWIG_1(SWIGTYPE_p_TfEnum.getCPtr(unit)), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string SdfUnitCategory(SWIGTYPE_p_TfEnum unit) {
+    string ret = UsdCsPINVOKE.SdfUnitCategory(SWIGTYPE_p_TfEnum.getCPtr(unit));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static double SdfConvertUnit(SWIGTYPE_p_TfEnum fromUnit, SWIGTYPE_p_TfEnum toUnit) {
+    double ret = UsdCsPINVOKE.SdfConvertUnit(SWIGTYPE_p_TfEnum.getCPtr(fromUnit), SWIGTYPE_p_TfEnum.getCPtr(toUnit));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string SdfGetNameForUnit(SWIGTYPE_p_TfEnum unit) {
+    string ret = UsdCsPINVOKE.SdfGetNameForUnit(SWIGTYPE_p_TfEnum.getCPtr(unit));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_TfEnum SdfGetUnitFromName(string name) {
+    SWIGTYPE_p_TfEnum ret = new SWIGTYPE_p_TfEnum(UsdCsPINVOKE.SdfGetUnitFromName(name), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool SdfBoolFromString(string arg0, SWIGTYPE_p_bool parseOk) {
+    bool ret = UsdCsPINVOKE.SdfBoolFromString__SWIG_0(arg0, SWIGTYPE_p_bool.getCPtr(parseOk));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool SdfBoolFromString(string arg0) {
+    bool ret = UsdCsPINVOKE.SdfBoolFromString__SWIG_1(arg0);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool SdfValueHasValidType(VtValue value) {
+    bool ret = UsdCsPINVOKE.SdfValueHasValidType(VtValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static TfType SdfGetTypeForValueTypeName(TfToken name) {
+    TfType ret = new TfType(UsdCsPINVOKE.SdfGetTypeForValueTypeName(TfToken.getCPtr(name)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeNameForValue(VtValue value) {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeNameForValue(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static TfToken SdfGetRoleNameForValueTypeName(TfToken typeName) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.SdfGetRoleNameForValueTypeName(TfToken.getCPtr(typeName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_std__ostream VtStreamOut(SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t arg0, SWIGTYPE_p_std__ostream arg1) {
+    SWIGTYPE_p_std__ostream ret = new SWIGTYPE_p_std__ostream(UsdCsPINVOKE.VtStreamOut(SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(arg0), SWIGTYPE_p_std__ostream.getCPtr(arg1)), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(SdfUnregisteredValue uv) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_34(SdfUnregisteredValue.getCPtr(uv));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static uint hash_value(SdfValueBlock block) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_34(SdfValueBlock.getCPtr(block));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_35(SdfValueBlock.getCPtr(block));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(SdfHumanReadableValue hrval) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_35(SdfHumanReadableValue.getCPtr(hrval));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_36(SdfHumanReadableValue.getCPtr(hrval));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(SdfIntListOp op) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_38(SdfIntListOp.getCPtr(op));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(SdfUIntListOp op) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_39(SdfUIntListOp.getCPtr(op));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(SdfInt64ListOp op) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_40(SdfInt64ListOp.getCPtr(op));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(SdfUInt64ListOp op) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_41(SdfUInt64ListOp.getCPtr(op));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(SdfTokenListOp op) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_42(SdfTokenListOp.getCPtr(op));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(SdfStringListOp op) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_43(SdfStringListOp.getCPtr(op));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(SdfPathListOp op) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_44(SdfPathListOp.getCPtr(op));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(SdfReferenceListOp op) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_45(SdfReferenceListOp.getCPtr(op));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(SdfUnregisteredValueListOp op) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_46(SdfUnregisteredValueListOp.getCPtr(op));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(SdfValueTypeName typeName) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_37(SdfValueTypeName.getCPtr(typeName));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_47(SdfValueTypeName.getCPtr(typeName));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2734,7 +2889,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(SdfAssetPath ap) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_38(SdfAssetPath.getCPtr(ap));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_48(SdfAssetPath.getCPtr(ap));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2755,19 +2910,31 @@ public class UsdCs {
   }
 
   public static uint hash_value(SdfPath path) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_39(SdfPath.getCPtr(path));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_49(SdfPath.getCPtr(path));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(SdfLayerOffset offset) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_40(SdfLayerOffset.getCPtr(offset));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_50(SdfLayerOffset.getCPtr(offset));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(SdfPayload p) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_41(SdfPayload.getCPtr(p));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_51(SdfPayload.getCPtr(p));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(SdfReference r) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_52(SdfReference.getCPtr(r));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static int SdfFindReferenceByIdentity(StdReferenceVector references, SdfReference referenceId) {
+    int ret = UsdCsPINVOKE.SdfFindReferenceByIdentity(StdReferenceVector.getCPtr(references), SdfReference.getCPtr(referenceId));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2785,6 +2952,176 @@ public class UsdCs {
   public static SdfNamespaceEditDetail.Result CombineUnbatched(SdfNamespaceEditDetail.Result other) {
     SdfNamespaceEditDetail.Result ret = (SdfNamespaceEditDetail.Result)UsdCsPINVOKE.CombineUnbatched((int)other);
     return ret;
+  }
+
+  public static uint hash_value(SdfSpec x) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_53(SdfSpec.getCPtr(x));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfPrimSpecHandle SdfCreatePrimInLayer(SdfLayerHandle layer, SdfPath primPath) {
+    SdfPrimSpecHandle ret = new SdfPrimSpecHandle(UsdCsPINVOKE.SdfCreatePrimInLayer(SdfLayerHandle.getCPtr(layer), SdfPath.getCPtr(primPath)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool IsTruthy(TfToken propName, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) {
+    bool ret = UsdCsPINVOKE.IsTruthy(TfToken.getCPtr(propName), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string StringVal(TfToken propName, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) {
+    string ret = UsdCsPINVOKE.StringVal__SWIG_0(TfToken.getCPtr(propName), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string StringVal(TfToken propName, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata, string defaultValue) {
+    string ret = UsdCsPINVOKE.StringVal__SWIG_1(TfToken.getCPtr(propName), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata), defaultValue);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static TfToken TokenVal(TfToken propName, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata, TfToken defaultValue) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.TokenVal__SWIG_0(TfToken.getCPtr(propName), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata), TfToken.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static TfToken TokenVal(TfToken propName, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.TokenVal__SWIG_1(TfToken.getCPtr(propName), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static StdStringVector StringVecVal(TfToken propName, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) {
+    StdStringVector ret = new StdStringVector(UsdCsPINVOKE.StringVecVal(TfToken.getCPtr(propName), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static TfTokenVector TokenVecVal(TfToken propName, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) {
+    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.TokenVecVal(TfToken.getCPtr(propName), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_std__vectorT_std__pairT_TfToken_TfToken_t_t OptionVecVal(string optionStr) {
+    SWIGTYPE_p_std__vectorT_std__pairT_TfToken_TfToken_t_t ret = new SWIGTYPE_p_std__vectorT_std__pairT_TfToken_TfToken_t_t(UsdCsPINVOKE.OptionVecVal(optionStr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string CreateStringFromStringVec(StdStringVector stringVec) {
+    string ret = UsdCsPINVOKE.CreateStringFromStringVec(StdStringVector.getCPtr(stringVec));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool IsPropertyAnAssetIdentifier(SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) {
+    bool ret = UsdCsPINVOKE.IsPropertyAnAssetIdentifier(SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(PcpLayerStackIdentifier x) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_54(PcpLayerStackIdentifier.getCPtr(x));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(PcpLayerStackIdentifierStr x) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_55(PcpLayerStackIdentifierStr.getCPtr(x));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_std__ostream PcpIdentifierFormatBaseName(SWIGTYPE_p_std__ostream arg0) {
+    SWIGTYPE_p_std__ostream ret = new SWIGTYPE_p_std__ostream(UsdCsPINVOKE.PcpIdentifierFormatBaseName(SWIGTYPE_p_std__ostream.getCPtr(arg0)), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_std__ostream PcpIdentifierFormatRealPath(SWIGTYPE_p_std__ostream arg0) {
+    SWIGTYPE_p_std__ostream ret = new SWIGTYPE_p_std__ostream(UsdCsPINVOKE.PcpIdentifierFormatRealPath(SWIGTYPE_p_std__ostream.getCPtr(arg0)), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_std__ostream PcpIdentifierFormatIdentifier(SWIGTYPE_p_std__ostream arg0) {
+    SWIGTYPE_p_std__ostream ret = new SWIGTYPE_p_std__ostream(UsdCsPINVOKE.PcpIdentifierFormatIdentifier(SWIGTYPE_p_std__ostream.getCPtr(arg0)), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(PcpNodeRef x) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_56(PcpNodeRef.getCPtr(x));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static void swap(PcpPrimIndex l, PcpPrimIndex r) {
+    UsdCsPINVOKE.swap__SWIG_5(PcpPrimIndex.getCPtr(l), PcpPrimIndex.getCPtr(r));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void swap(SWIGTYPE_p_PcpPrimIndexOutputs l, SWIGTYPE_p_PcpPrimIndexOutputs r) {
+    UsdCsPINVOKE.swap__SWIG_6(SWIGTYPE_p_PcpPrimIndexOutputs.getCPtr(l), SWIGTYPE_p_PcpPrimIndexOutputs.getCPtr(r));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void PcpComputePrimIndex(SdfPath primPath, PcpLayerStackPtr layerStack, SWIGTYPE_p_PcpPrimIndexInputs inputs, SWIGTYPE_p_PcpPrimIndexOutputs outputs, SWIGTYPE_p_ArResolver pathResolver) {
+    UsdCsPINVOKE.PcpComputePrimIndex__SWIG_0(SdfPath.getCPtr(primPath), PcpLayerStackPtr.getCPtr(layerStack), SWIGTYPE_p_PcpPrimIndexInputs.getCPtr(inputs), SWIGTYPE_p_PcpPrimIndexOutputs.getCPtr(outputs), SWIGTYPE_p_ArResolver.getCPtr(pathResolver));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void PcpComputePrimIndex(SdfPath primPath, PcpLayerStackPtr layerStack, SWIGTYPE_p_PcpPrimIndexInputs inputs, SWIGTYPE_p_PcpPrimIndexOutputs outputs) {
+    UsdCsPINVOKE.PcpComputePrimIndex__SWIG_1(SdfPath.getCPtr(primPath), PcpLayerStackPtr.getCPtr(layerStack), SWIGTYPE_p_PcpPrimIndexInputs.getCPtr(inputs), SWIGTYPE_p_PcpPrimIndexOutputs.getCPtr(outputs));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static bool PcpIsNewDefaultStandinBehaviorEnabled() {
+    bool ret = UsdCsPINVOKE.PcpIsNewDefaultStandinBehaviorEnabled();
+    return ret;
+  }
+
+  public static void PcpBuildPropertyIndex(SdfPath propertyPath, PcpCache cache, PcpPropertyIndex propertyIndex, SWIGTYPE_p_PcpErrorVector allErrors) {
+    UsdCsPINVOKE.PcpBuildPropertyIndex(SdfPath.getCPtr(propertyPath), PcpCache.getCPtr(cache), PcpPropertyIndex.getCPtr(propertyIndex), SWIGTYPE_p_PcpErrorVector.getCPtr(allErrors));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void PcpBuildPrimPropertyIndex(SdfPath propertyPath, PcpCache cache, PcpPrimIndex owningPrimIndex, PcpPropertyIndex propertyIndex, SWIGTYPE_p_PcpErrorVector allErrors) {
+    UsdCsPINVOKE.PcpBuildPrimPropertyIndex(SdfPath.getCPtr(propertyPath), PcpCache.getCPtr(cache), PcpPrimIndex.getCPtr(owningPrimIndex), PcpPropertyIndex.getCPtr(propertyIndex), SWIGTYPE_p_PcpErrorVector.getCPtr(allErrors));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static bool PcpIsInheritArc(PcpArcType arcType) {
+    bool ret = UsdCsPINVOKE.PcpIsInheritArc((int)arcType);
+    return ret;
+  }
+
+  public static bool PcpIsSpecializesArc(PcpArcType arcType) {
+    bool ret = UsdCsPINVOKE.PcpIsSpecializesArc((int)arcType);
+    return ret;
+  }
+
+  public static bool PcpIsClassBasedArc(PcpArcType arcType) {
+    bool ret = UsdCsPINVOKE.PcpIsClassBasedArc((int)arcType);
+    return ret;
+  }
+
+  public static bool PcpIsLocalClassBasedArc(PcpArcType arcType) {
+    bool ret = UsdCsPINVOKE.PcpIsLocalClassBasedArc((int)arcType);
+    return ret;
+  }
+
+  public static uint PCP_INVALID_INDEX {
+    get {
+      uint ret = UsdCsPINVOKE.PCP_INVALID_INDEX_get();
+      return ret;
+    } 
   }
 
   public static string UsdDescribe(UsdObject arg0) {
@@ -2828,13 +3165,13 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdTimeCode time) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_42(UsdTimeCode.getCPtr(time));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_57(UsdTimeCode.getCPtr(time));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(Usd_PrimFlagsPredicate p) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_43(Usd_PrimFlagsPredicate.getCPtr(p));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_58(Usd_PrimFlagsPredicate.getCPtr(p));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2923,12 +3260,12 @@ public class UsdCs {
   }
 
   public static void swap(UsdStagePopulationMask l, UsdStagePopulationMask r) {
-    UsdCsPINVOKE.swap__SWIG_5(UsdStagePopulationMask.getCPtr(l), UsdStagePopulationMask.getCPtr(r));
+    UsdCsPINVOKE.swap__SWIG_7(UsdStagePopulationMask.getCPtr(l), UsdStagePopulationMask.getCPtr(r));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public static void swap(UsdStageCache lhs, UsdStageCache rhs) {
-    UsdCsPINVOKE.swap__SWIG_6(UsdStageCache.getCPtr(lhs), UsdStageCache.getCPtr(rhs));
+    UsdCsPINVOKE.swap__SWIG_8(UsdStageCache.getCPtr(lhs), UsdStageCache.getCPtr(rhs));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -2948,7 +3285,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdObject obj) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_44(UsdObject.getCPtr(obj));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_59(UsdObject.getCPtr(obj));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2964,6 +3301,12 @@ public class UsdCs {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public static uint hash_value(UsdGeomPrimvar obj) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_60(UsdGeomPrimvar.getCPtr(obj));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static bool UsdGeomPointInstancerApplyNewStyleListOps() {
     bool ret = UsdCsPINVOKE.UsdGeomPointInstancerApplyNewStyleListOps();
     return ret;
@@ -2976,13 +3319,13 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdSkelAnimQuery query) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_45(UsdSkelAnimQuery.getCPtr(query));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_61(UsdSkelAnimQuery.getCPtr(query));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(UsdSkelSkeletonQuery query) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_46(UsdSkelSkeletonQuery.getCPtr(query));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_62(UsdSkelSkeletonQuery.getCPtr(query));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2999,135 +3342,236 @@ public class UsdCs {
     return ret;
   }
 
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t xforms, SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t inverseXforms, SWIGTYPE_p_TfSpanT_GfMatrix4d_t jointLocalXforms, GfMatrix4d rootInverseXform) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_0(UsdSkelTopology.getCPtr(topology), SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(xforms), SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(inverseXforms), SWIGTYPE_p_TfSpanT_GfMatrix4d_t.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(rootInverseXform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t xforms, SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t inverseXforms, SWIGTYPE_p_TfSpanT_GfMatrix4d_t jointLocalXforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_1(UsdSkelTopology.getCPtr(topology), SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(xforms), SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(inverseXforms), SWIGTYPE_p_TfSpanT_GfMatrix4d_t.getCPtr(jointLocalXforms));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t xforms, SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t inverseXforms, SWIGTYPE_p_TfSpanT_GfMatrix4f_t jointLocalXforms, GfMatrix4f rootInverseXform) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_2(UsdSkelTopology.getCPtr(topology), SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t.getCPtr(xforms), SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t.getCPtr(inverseXforms), SWIGTYPE_p_TfSpanT_GfMatrix4f_t.getCPtr(jointLocalXforms), GfMatrix4f.getCPtr(rootInverseXform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t xforms, SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t inverseXforms, SWIGTYPE_p_TfSpanT_GfMatrix4f_t jointLocalXforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_3(UsdSkelTopology.getCPtr(topology), SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t.getCPtr(xforms), SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t.getCPtr(inverseXforms), SWIGTYPE_p_TfSpanT_GfMatrix4f_t.getCPtr(jointLocalXforms));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t xforms, SWIGTYPE_p_TfSpanT_GfMatrix4d_t jointLocalXforms, GfMatrix4d rootInverseXform) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_4(UsdSkelTopology.getCPtr(topology), SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(xforms), SWIGTYPE_p_TfSpanT_GfMatrix4d_t.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(rootInverseXform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t xforms, SWIGTYPE_p_TfSpanT_GfMatrix4d_t jointLocalXforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_5(UsdSkelTopology.getCPtr(topology), SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(xforms), SWIGTYPE_p_TfSpanT_GfMatrix4d_t.getCPtr(jointLocalXforms));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t xforms, SWIGTYPE_p_TfSpanT_GfMatrix4f_t jointLocalXforms, GfMatrix4f rootInverseXform) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_6(UsdSkelTopology.getCPtr(topology), SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t.getCPtr(xforms), SWIGTYPE_p_TfSpanT_GfMatrix4f_t.getCPtr(jointLocalXforms), GfMatrix4f.getCPtr(rootInverseXform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t xforms, SWIGTYPE_p_TfSpanT_GfMatrix4f_t jointLocalXforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_7(UsdSkelTopology.getCPtr(topology), SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t.getCPtr(xforms), SWIGTYPE_p_TfSpanT_GfMatrix4f_t.getCPtr(jointLocalXforms));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, VtMatrix4dArray xforms, VtMatrix4dArray inverseXforms, VtMatrix4dArray jointLocalXforms, GfMatrix4d rootInverseXform) {
-    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_0(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(xforms), VtMatrix4dArray.getCPtr(inverseXforms), VtMatrix4dArray.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(rootInverseXform));
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_8(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(xforms), VtMatrix4dArray.getCPtr(inverseXforms), VtMatrix4dArray.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(rootInverseXform));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, VtMatrix4dArray xforms, VtMatrix4dArray inverseXforms, VtMatrix4dArray jointLocalXforms) {
-    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_1(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(xforms), VtMatrix4dArray.getCPtr(inverseXforms), VtMatrix4dArray.getCPtr(jointLocalXforms));
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_9(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(xforms), VtMatrix4dArray.getCPtr(inverseXforms), VtMatrix4dArray.getCPtr(jointLocalXforms));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, VtMatrix4dArray xforms, VtMatrix4dArray jointLocalXforms, GfMatrix4d rootInverseXform) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_10(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(xforms), VtMatrix4dArray.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(rootInverseXform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, VtMatrix4dArray xforms, VtMatrix4dArray jointLocalXforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_11(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(xforms), VtMatrix4dArray.getCPtr(jointLocalXforms));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, GfMatrix4d xforms, GfMatrix4d inverseXforms, GfMatrix4d jointLocalXforms, GfMatrix4d rootInverseXform) {
-    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_2(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(xforms), GfMatrix4d.getCPtr(inverseXforms), GfMatrix4d.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(rootInverseXform));
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_12(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(xforms), GfMatrix4d.getCPtr(inverseXforms), GfMatrix4d.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(rootInverseXform));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, GfMatrix4d xforms, GfMatrix4d inverseXforms, GfMatrix4d jointLocalXforms) {
-    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_3(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(xforms), GfMatrix4d.getCPtr(inverseXforms), GfMatrix4d.getCPtr(jointLocalXforms));
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_13(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(xforms), GfMatrix4d.getCPtr(inverseXforms), GfMatrix4d.getCPtr(jointLocalXforms));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelConcatJointTransforms(UsdSkelTopology topology, SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t jointLocalXforms, SWIGTYPE_p_TfSpanT_GfMatrix4d_t xforms, GfMatrix4d rootXform) {
+    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_0(UsdSkelTopology.getCPtr(topology), SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(jointLocalXforms), SWIGTYPE_p_TfSpanT_GfMatrix4d_t.getCPtr(xforms), GfMatrix4d.getCPtr(rootXform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelConcatJointTransforms(UsdSkelTopology topology, SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t jointLocalXforms, SWIGTYPE_p_TfSpanT_GfMatrix4d_t xforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_1(UsdSkelTopology.getCPtr(topology), SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(jointLocalXforms), SWIGTYPE_p_TfSpanT_GfMatrix4d_t.getCPtr(xforms));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelConcatJointTransforms(UsdSkelTopology topology, SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t jointLocalXforms, SWIGTYPE_p_TfSpanT_GfMatrix4f_t xforms, GfMatrix4f rootXform) {
+    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_2(UsdSkelTopology.getCPtr(topology), SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t.getCPtr(jointLocalXforms), SWIGTYPE_p_TfSpanT_GfMatrix4f_t.getCPtr(xforms), GfMatrix4f.getCPtr(rootXform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelConcatJointTransforms(UsdSkelTopology topology, SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t jointLocalXforms, SWIGTYPE_p_TfSpanT_GfMatrix4f_t xforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_3(UsdSkelTopology.getCPtr(topology), SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t.getCPtr(jointLocalXforms), SWIGTYPE_p_TfSpanT_GfMatrix4f_t.getCPtr(xforms));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelConcatJointTransforms(UsdSkelTopology topology, VtMatrix4dArray jointLocalXforms, VtMatrix4dArray xforms, GfMatrix4d rootXform) {
-    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_0(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(jointLocalXforms), VtMatrix4dArray.getCPtr(xforms), GfMatrix4d.getCPtr(rootXform));
+    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_4(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(jointLocalXforms), VtMatrix4dArray.getCPtr(xforms), GfMatrix4d.getCPtr(rootXform));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelConcatJointTransforms(UsdSkelTopology topology, VtMatrix4dArray jointLocalXforms, VtMatrix4dArray xforms) {
-    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_1(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(jointLocalXforms), VtMatrix4dArray.getCPtr(xforms));
+    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_5(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(jointLocalXforms), VtMatrix4dArray.getCPtr(xforms));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelConcatJointTransforms(UsdSkelTopology topology, GfMatrix4d jointLocalXforms, GfMatrix4d xforms, GfMatrix4d rootXform) {
-    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_2(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(xforms), GfMatrix4d.getCPtr(rootXform));
+    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_6(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(xforms), GfMatrix4d.getCPtr(rootXform));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelConcatJointTransforms(UsdSkelTopology topology, GfMatrix4d jointLocalXforms, GfMatrix4d xforms) {
-    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_3(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(xforms));
+    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_7(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(xforms));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelComputeJointsExtent(VtMatrix4dArray joints, VtVec3fArray extent, float pad, GfMatrix4d rootXform) {
-    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_0(VtMatrix4dArray.getCPtr(joints), VtVec3fArray.getCPtr(extent), pad, GfMatrix4d.getCPtr(rootXform));
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_3(VtMatrix4dArray.getCPtr(joints), VtVec3fArray.getCPtr(extent), pad, GfMatrix4d.getCPtr(rootXform));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelComputeJointsExtent(VtMatrix4dArray joints, VtVec3fArray extent, float pad) {
-    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_1(VtMatrix4dArray.getCPtr(joints), VtVec3fArray.getCPtr(extent), pad);
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_4(VtMatrix4dArray.getCPtr(joints), VtVec3fArray.getCPtr(extent), pad);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelComputeJointsExtent(VtMatrix4dArray joints, VtVec3fArray extent) {
-    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_2(VtMatrix4dArray.getCPtr(joints), VtVec3fArray.getCPtr(extent));
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_5(VtMatrix4dArray.getCPtr(joints), VtVec3fArray.getCPtr(extent));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelComputeJointsExtent(GfMatrix4d xforms, uint numXforms, VtVec3fArray extent, float pad, GfMatrix4d rootXform) {
-    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_3(GfMatrix4d.getCPtr(xforms), numXforms, VtVec3fArray.getCPtr(extent), pad, GfMatrix4d.getCPtr(rootXform));
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_6(GfMatrix4d.getCPtr(xforms), numXforms, VtVec3fArray.getCPtr(extent), pad, GfMatrix4d.getCPtr(rootXform));
     return ret;
   }
 
   public static bool UsdSkelComputeJointsExtent(GfMatrix4d xforms, uint numXforms, VtVec3fArray extent, float pad) {
-    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_4(GfMatrix4d.getCPtr(xforms), numXforms, VtVec3fArray.getCPtr(extent), pad);
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_7(GfMatrix4d.getCPtr(xforms), numXforms, VtVec3fArray.getCPtr(extent), pad);
     return ret;
   }
 
-  public static bool UsdSkelDecomposeTransform(GfMatrix4d xform, GfVec3f translate, GfRotation rotate, GfVec3h scale) {
-    bool ret = UsdCsPINVOKE.UsdSkelDecomposeTransform__SWIG_0(GfMatrix4d.getCPtr(xform), GfVec3f.getCPtr(translate), GfRotation.getCPtr(rotate), GfVec3h.getCPtr(scale));
+  public static bool UsdSkelComputeJointsExtent(GfMatrix4d xforms, uint numXforms, VtVec3fArray extent) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_8(GfMatrix4d.getCPtr(xforms), numXforms, VtVec3fArray.getCPtr(extent));
+    return ret;
+  }
+
+  public static bool UsdSkelDecomposeTransforms(SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t xforms, SWIGTYPE_p_TfSpanT_GfVec3f_t translations, SWIGTYPE_p_TfSpanT_GfQuatf_t rotations, SWIGTYPE_p_TfSpanT_GfVec3h_t scales) {
+    bool ret = UsdCsPINVOKE.UsdSkelDecomposeTransforms__SWIG_0(SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(xforms), SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(translations), SWIGTYPE_p_TfSpanT_GfQuatf_t.getCPtr(rotations), SWIGTYPE_p_TfSpanT_GfVec3h_t.getCPtr(scales));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static bool UsdSkelDecomposeTransform(GfMatrix4d xform, GfVec3f translate, GfQuatf rotate, GfVec3h scale) {
-    bool ret = UsdCsPINVOKE.UsdSkelDecomposeTransform__SWIG_1(GfMatrix4d.getCPtr(xform), GfVec3f.getCPtr(translate), GfQuatf.getCPtr(rotate), GfVec3h.getCPtr(scale));
+  public static bool UsdSkelDecomposeTransforms(SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t xforms, SWIGTYPE_p_TfSpanT_GfVec3f_t translations, SWIGTYPE_p_TfSpanT_GfQuatf_t rotations, SWIGTYPE_p_TfSpanT_GfVec3h_t scales) {
+    bool ret = UsdCsPINVOKE.UsdSkelDecomposeTransforms__SWIG_1(SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t.getCPtr(xforms), SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(translations), SWIGTYPE_p_TfSpanT_GfQuatf_t.getCPtr(rotations), SWIGTYPE_p_TfSpanT_GfVec3h_t.getCPtr(scales));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelDecomposeTransforms(VtMatrix4dArray xforms, VtVec3fArray translations, VtQuatfArray rotations, VtVec3hArray scales) {
-    bool ret = UsdCsPINVOKE.UsdSkelDecomposeTransforms__SWIG_0(VtMatrix4dArray.getCPtr(xforms), VtVec3fArray.getCPtr(translations), VtQuatfArray.getCPtr(rotations), VtVec3hArray.getCPtr(scales));
+    bool ret = UsdCsPINVOKE.UsdSkelDecomposeTransforms__SWIG_2(VtMatrix4dArray.getCPtr(xforms), VtVec3fArray.getCPtr(translations), VtQuatfArray.getCPtr(rotations), VtVec3hArray.getCPtr(scales));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelDecomposeTransforms(GfMatrix4d xforms, GfVec3f translations, GfQuatf rotations, GfVec3h scales, uint count) {
-    bool ret = UsdCsPINVOKE.UsdSkelDecomposeTransforms__SWIG_1(GfMatrix4d.getCPtr(xforms), GfVec3f.getCPtr(translations), GfQuatf.getCPtr(rotations), GfVec3h.getCPtr(scales), count);
+    bool ret = UsdCsPINVOKE.UsdSkelDecomposeTransforms__SWIG_3(GfMatrix4d.getCPtr(xforms), GfVec3f.getCPtr(translations), GfQuatf.getCPtr(rotations), GfVec3h.getCPtr(scales), count);
     return ret;
   }
 
-  public static GfMatrix4d UsdSkelMakeTransform(GfVec3f translate, GfMatrix3f rotate, GfVec3h scale) {
-    GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdSkelMakeTransform__SWIG_0(GfVec3f.getCPtr(translate), GfMatrix3f.getCPtr(rotate), GfVec3h.getCPtr(scale)), true);
+  public static bool UsdSkelMakeTransforms(SWIGTYPE_p_TfSpanT_GfVec3f_const_t translations, SWIGTYPE_p_TfSpanT_GfQuatf_const_t rotations, SWIGTYPE_p_TfSpanT_GfVec3h_const_t scales, SWIGTYPE_p_TfSpanT_GfMatrix4d_t xforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelMakeTransforms__SWIG_0(SWIGTYPE_p_TfSpanT_GfVec3f_const_t.getCPtr(translations), SWIGTYPE_p_TfSpanT_GfQuatf_const_t.getCPtr(rotations), SWIGTYPE_p_TfSpanT_GfVec3h_const_t.getCPtr(scales), SWIGTYPE_p_TfSpanT_GfMatrix4d_t.getCPtr(xforms));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static GfMatrix4d UsdSkelMakeTransform(GfVec3f translate, GfQuatf rotate, GfVec3h scale) {
-    GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdSkelMakeTransform__SWIG_1(GfVec3f.getCPtr(translate), GfQuatf.getCPtr(rotate), GfVec3h.getCPtr(scale)), true);
+  public static bool UsdSkelMakeTransforms(SWIGTYPE_p_TfSpanT_GfVec3f_const_t translations, SWIGTYPE_p_TfSpanT_GfQuatf_const_t rotations, SWIGTYPE_p_TfSpanT_GfVec3h_const_t scales, SWIGTYPE_p_TfSpanT_GfMatrix4f_t xforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelMakeTransforms__SWIG_1(SWIGTYPE_p_TfSpanT_GfVec3f_const_t.getCPtr(translations), SWIGTYPE_p_TfSpanT_GfQuatf_const_t.getCPtr(rotations), SWIGTYPE_p_TfSpanT_GfVec3h_const_t.getCPtr(scales), SWIGTYPE_p_TfSpanT_GfMatrix4f_t.getCPtr(xforms));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelMakeTransforms(VtVec3fArray translations, VtQuatfArray rotations, VtVec3hArray scales, VtMatrix4dArray xforms) {
-    bool ret = UsdCsPINVOKE.UsdSkelMakeTransforms__SWIG_0(VtVec3fArray.getCPtr(translations), VtQuatfArray.getCPtr(rotations), VtVec3hArray.getCPtr(scales), VtMatrix4dArray.getCPtr(xforms));
+    bool ret = UsdCsPINVOKE.UsdSkelMakeTransforms__SWIG_2(VtVec3fArray.getCPtr(translations), VtQuatfArray.getCPtr(rotations), VtVec3hArray.getCPtr(scales), VtMatrix4dArray.getCPtr(xforms));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelMakeTransforms(GfVec3f translations, GfQuatf rotations, GfVec3h scales, GfMatrix4d xforms, uint count) {
-    bool ret = UsdCsPINVOKE.UsdSkelMakeTransforms__SWIG_1(GfVec3f.getCPtr(translations), GfQuatf.getCPtr(rotations), GfVec3h.getCPtr(scales), GfMatrix4d.getCPtr(xforms), count);
+    bool ret = UsdCsPINVOKE.UsdSkelMakeTransforms__SWIG_3(GfVec3f.getCPtr(translations), GfQuatf.getCPtr(rotations), GfVec3h.getCPtr(scales), GfMatrix4d.getCPtr(xforms), count);
+    return ret;
+  }
+
+  public static bool UsdSkelNormalizeWeights(SWIGTYPE_p_TfSpanT_float_t weights, int numInfluencesPerComponent) {
+    bool ret = UsdCsPINVOKE.UsdSkelNormalizeWeights__SWIG_0(SWIGTYPE_p_TfSpanT_float_t.getCPtr(weights), numInfluencesPerComponent);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelNormalizeWeights(VtFloatArray weights, int numInfluencesPerComponent) {
-    bool ret = UsdCsPINVOKE.UsdSkelNormalizeWeights(VtFloatArray.getCPtr(weights), numInfluencesPerComponent);
+    bool ret = UsdCsPINVOKE.UsdSkelNormalizeWeights__SWIG_1(VtFloatArray.getCPtr(weights), numInfluencesPerComponent);
+    return ret;
+  }
+
+  public static bool UsdSkelSortInfluences(SWIGTYPE_p_TfSpanT_int_t indices, SWIGTYPE_p_TfSpanT_float_t weights, int numInfluencesPerComponent) {
+    bool ret = UsdCsPINVOKE.UsdSkelSortInfluences__SWIG_0(SWIGTYPE_p_TfSpanT_int_t.getCPtr(indices), SWIGTYPE_p_TfSpanT_float_t.getCPtr(weights), numInfluencesPerComponent);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelSortInfluences(VtIntArray indices, VtFloatArray weights, int numInfluencesPerComponent) {
-    bool ret = UsdCsPINVOKE.UsdSkelSortInfluences(VtIntArray.getCPtr(indices), VtFloatArray.getCPtr(weights), numInfluencesPerComponent);
+    bool ret = UsdCsPINVOKE.UsdSkelSortInfluences__SWIG_1(VtIntArray.getCPtr(indices), VtFloatArray.getCPtr(weights), numInfluencesPerComponent);
     return ret;
   }
 
@@ -3151,32 +3595,110 @@ public class UsdCs {
     return ret;
   }
 
-  public static bool UsdSkelSkinPointsLBS(GfMatrix4d geomBindTransform, VtMatrix4dArray jointXforms, VtIntArray jointIndices, VtFloatArray jointWeights, int numInfluencesPerPoint, VtVec3fArray points) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_0(GfMatrix4d.getCPtr(geomBindTransform), VtMatrix4dArray.getCPtr(jointXforms), VtIntArray.getCPtr(jointIndices), VtFloatArray.getCPtr(jointWeights), numInfluencesPerPoint, VtVec3fArray.getCPtr(points));
+  public static bool UsdSkelInterleaveInfluences(SWIGTYPE_p_TfSpanT_int_const_t indices, SWIGTYPE_p_TfSpanT_float_const_t weights, SWIGTYPE_p_TfSpanT_GfVec2f_t interleavedInfluences) {
+    bool ret = UsdCsPINVOKE.UsdSkelInterleaveInfluences(SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(indices), SWIGTYPE_p_TfSpanT_float_const_t.getCPtr(weights), SWIGTYPE_p_TfSpanT_GfVec2f_t.getCPtr(interleavedInfluences));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static bool UsdSkelSkinPointsLBS(GfMatrix4d geomBindTransform, GfMatrix4d jointXforms, uint numJoints, SWIGTYPE_p_int jointIndices, SWIGTYPE_p_float jointWeights, uint numInfluences, int numInfluencesPerPoint, GfVec3f points, uint numPoints, bool forceSerial) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_1(GfMatrix4d.getCPtr(geomBindTransform), GfMatrix4d.getCPtr(jointXforms), numJoints, SWIGTYPE_p_int.getCPtr(jointIndices), SWIGTYPE_p_float.getCPtr(jointWeights), numInfluences, numInfluencesPerPoint, GfVec3f.getCPtr(points), numPoints, forceSerial);
+  public static bool UsdSkelSkinPointsLBS(GfMatrix4d geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t jointXforms, SWIGTYPE_p_TfSpanT_int_const_t jointIndices, SWIGTYPE_p_TfSpanT_float_const_t jointWeights, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t points, bool inSerial) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_0(GfMatrix4d.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(jointIndices), SWIGTYPE_p_TfSpanT_float_const_t.getCPtr(jointWeights), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(points), inSerial);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinPointsLBS(GfMatrix4d geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t jointXforms, SWIGTYPE_p_TfSpanT_int_const_t jointIndices, SWIGTYPE_p_TfSpanT_float_const_t jointWeights, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t points) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_1(GfMatrix4d.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(jointIndices), SWIGTYPE_p_TfSpanT_float_const_t.getCPtr(jointWeights), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(points));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinPointsLBS(GfMatrix4f geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t jointXforms, SWIGTYPE_p_TfSpanT_int_const_t jointIndices, SWIGTYPE_p_TfSpanT_float_const_t jointWeights, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t points, bool inSerial) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_2(GfMatrix4f.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(jointIndices), SWIGTYPE_p_TfSpanT_float_const_t.getCPtr(jointWeights), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(points), inSerial);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinPointsLBS(GfMatrix4f geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t jointXforms, SWIGTYPE_p_TfSpanT_int_const_t jointIndices, SWIGTYPE_p_TfSpanT_float_const_t jointWeights, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t points) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_3(GfMatrix4f.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(jointIndices), SWIGTYPE_p_TfSpanT_float_const_t.getCPtr(jointWeights), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(points));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinPointsLBS(GfMatrix4d geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t jointXforms, SWIGTYPE_p_TfSpanT_GfVec2f_const_t influences, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t points, bool inSerial) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_4(GfMatrix4d.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_GfVec2f_const_t.getCPtr(influences), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(points), inSerial);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinPointsLBS(GfMatrix4d geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t jointXforms, SWIGTYPE_p_TfSpanT_GfVec2f_const_t influences, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t points) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_5(GfMatrix4d.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_GfVec2f_const_t.getCPtr(influences), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(points));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinPointsLBS(GfMatrix4f geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t jointXforms, SWIGTYPE_p_TfSpanT_GfVec2f_const_t influences, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t points, bool inSerial) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_6(GfMatrix4f.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_GfVec2f_const_t.getCPtr(influences), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(points), inSerial);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinPointsLBS(GfMatrix4f geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t jointXforms, SWIGTYPE_p_TfSpanT_GfVec2f_const_t influences, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t points) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_7(GfMatrix4f.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_GfVec2f_const_t.getCPtr(influences), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(points));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinPointsLBS(GfMatrix4d geomBindTransform, VtMatrix4dArray jointXforms, VtIntArray jointIndices, VtFloatArray jointWeights, int numInfluencesPerPoint, VtVec3fArray points) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_8(GfMatrix4d.getCPtr(geomBindTransform), VtMatrix4dArray.getCPtr(jointXforms), VtIntArray.getCPtr(jointIndices), VtFloatArray.getCPtr(jointWeights), numInfluencesPerPoint, VtVec3fArray.getCPtr(points));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinPointsLBS(GfMatrix4d geomBindTransform, GfMatrix4d jointXforms, uint numJoints, SWIGTYPE_p_int jointIndices, SWIGTYPE_p_float jointWeights, uint numInfluences, int numInfluencesPerPoint, GfVec3f points, uint numPoints, bool inSerial) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_9(GfMatrix4d.getCPtr(geomBindTransform), GfMatrix4d.getCPtr(jointXforms), numJoints, SWIGTYPE_p_int.getCPtr(jointIndices), SWIGTYPE_p_float.getCPtr(jointWeights), numInfluences, numInfluencesPerPoint, GfVec3f.getCPtr(points), numPoints, inSerial);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelSkinPointsLBS(GfMatrix4d geomBindTransform, GfMatrix4d jointXforms, uint numJoints, SWIGTYPE_p_int jointIndices, SWIGTYPE_p_float jointWeights, uint numInfluences, int numInfluencesPerPoint, GfVec3f points, uint numPoints) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_2(GfMatrix4d.getCPtr(geomBindTransform), GfMatrix4d.getCPtr(jointXforms), numJoints, SWIGTYPE_p_int.getCPtr(jointIndices), SWIGTYPE_p_float.getCPtr(jointWeights), numInfluences, numInfluencesPerPoint, GfVec3f.getCPtr(points), numPoints);
+    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_10(GfMatrix4d.getCPtr(geomBindTransform), GfMatrix4d.getCPtr(jointXforms), numJoints, SWIGTYPE_p_int.getCPtr(jointIndices), SWIGTYPE_p_float.getCPtr(jointWeights), numInfluences, numInfluencesPerPoint, GfVec3f.getCPtr(points), numPoints);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static bool UsdSkelSkinTransformLBS(GfMatrix4d geomBindTransform, VtMatrix4dArray jointXforms, VtIntArray jointIndices, VtFloatArray jointWeights, GfMatrix4d xform) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinTransformLBS__SWIG_0(GfMatrix4d.getCPtr(geomBindTransform), VtMatrix4dArray.getCPtr(jointXforms), VtIntArray.getCPtr(jointIndices), VtFloatArray.getCPtr(jointWeights), GfMatrix4d.getCPtr(xform));
+  public static bool UsdSkelSkinTransformLBS(GfMatrix4d geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t jointXforms, SWIGTYPE_p_TfSpanT_int_const_t jointIndices, SWIGTYPE_p_TfSpanT_float_const_t jointWeights, GfMatrix4d xform) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinTransformLBS__SWIG_0(GfMatrix4d.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(jointIndices), SWIGTYPE_p_TfSpanT_float_const_t.getCPtr(jointWeights), GfMatrix4d.getCPtr(xform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinTransformLBS(GfMatrix4f geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t jointXforms, SWIGTYPE_p_TfSpanT_int_const_t jointIndices, SWIGTYPE_p_TfSpanT_float_const_t jointWeights, GfMatrix4f xform) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinTransformLBS__SWIG_1(GfMatrix4f.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(jointIndices), SWIGTYPE_p_TfSpanT_float_const_t.getCPtr(jointWeights), GfMatrix4f.getCPtr(xform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinTransformLBS(GfMatrix4d geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t jointXforms, SWIGTYPE_p_TfSpanT_GfVec2f_const_t influences, GfMatrix4d xform) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinTransformLBS__SWIG_2(GfMatrix4d.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_GfVec2f_const_t.getCPtr(influences), GfMatrix4d.getCPtr(xform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinTransformLBS(GfMatrix4f geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t jointXforms, SWIGTYPE_p_TfSpanT_GfVec2f_const_t influences, GfMatrix4f xform) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinTransformLBS__SWIG_3(GfMatrix4f.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix4f_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_GfVec2f_const_t.getCPtr(influences), GfMatrix4f.getCPtr(xform));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelSkinTransformLBS(GfMatrix4d geomBindTransform, GfMatrix4d jointXforms, uint numJoints, SWIGTYPE_p_int jointIndices, SWIGTYPE_p_float jointWeights, uint numInfluences, GfMatrix4d xform) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinTransformLBS__SWIG_1(GfMatrix4d.getCPtr(geomBindTransform), GfMatrix4d.getCPtr(jointXforms), numJoints, SWIGTYPE_p_int.getCPtr(jointIndices), SWIGTYPE_p_float.getCPtr(jointWeights), numInfluences, GfMatrix4d.getCPtr(xform));
+    bool ret = UsdCsPINVOKE.UsdSkelSkinTransformLBS__SWIG_4(GfMatrix4d.getCPtr(geomBindTransform), GfMatrix4d.getCPtr(jointXforms), numJoints, SWIGTYPE_p_int.getCPtr(jointIndices), SWIGTYPE_p_float.getCPtr(jointWeights), numInfluences, GfMatrix4d.getCPtr(xform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelApplyBlendShape(float weight, SWIGTYPE_p_TfSpanT_GfVec3f_const_t offsets, SWIGTYPE_p_TfSpanT_unsigned_int_const_t indices, SWIGTYPE_p_TfSpanT_GfVec3f_t points) {
+    bool ret = UsdCsPINVOKE.UsdSkelApplyBlendShape(weight, SWIGTYPE_p_TfSpanT_GfVec3f_const_t.getCPtr(offsets), SWIGTYPE_p_TfSpanT_unsigned_int_const_t.getCPtr(indices), SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(points));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3205,6 +3727,362 @@ public class UsdCs {
     return ret;
   }
 
+  public static GfVec3f UsdLuxBlackbodyTemperatureAsRgb(float colorTemp) {
+    GfVec3f ret = new GfVec3f(UsdCsPINVOKE.UsdLuxBlackbodyTemperatureAsRgb(colorTemp), true);
+    return ret;
+  }
+
+  public static int UsdRiConvertToRManInterpolateBoundary(TfToken token) {
+    int ret = UsdCsPINVOKE.UsdRiConvertToRManInterpolateBoundary(TfToken.getCPtr(token));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static TfToken UsdRiConvertFromRManInterpolateBoundary(int i) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdRiConvertFromRManInterpolateBoundary(i), false);
+    return ret;
+  }
+
+  public static int UsdRiConvertToRManFaceVaryingLinearInterpolation(TfToken token) {
+    int ret = UsdCsPINVOKE.UsdRiConvertToRManFaceVaryingLinearInterpolation(TfToken.getCPtr(token));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static TfToken UsdRiConvertFromRManFaceVaryingLinearInterpolation(int i) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdRiConvertFromRManFaceVaryingLinearInterpolation(i), false);
+    return ret;
+  }
+
+  public static int UsdRiConvertToRManTriangleSubdivisionRule(TfToken token) {
+    int ret = UsdCsPINVOKE.UsdRiConvertToRManTriangleSubdivisionRule(TfToken.getCPtr(token));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static TfToken UsdRiConvertFromRManTriangleSubdivisionRule(int i) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdRiConvertFromRManTriangleSubdivisionRule(i), false);
+    return ret;
+  }
+
+  public static UsdStage UsdUtilsComputeUsdStageStats(string rootLayerPath, VtDictionary stats) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdUtilsComputeUsdStageStats__SWIG_0(rootLayerPath, VtDictionary.getCPtr(stats));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint UsdUtilsComputeUsdStageStats(UsdStageWeakPtr stage, VtDictionary stats) {
+    uint ret = UsdCsPINVOKE.UsdUtilsComputeUsdStageStats__SWIG_1(UsdStageWeakPtr.getCPtr(stage), VtDictionary.getCPtr(stats));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_TfEnvSettingT_bool_t USD_FORCE_DEFAULT_MATERIALS_SCOPE_NAME {
+    set {
+      UsdCsPINVOKE.USD_FORCE_DEFAULT_MATERIALS_SCOPE_NAME_set(SWIGTYPE_p_TfEnvSettingT_bool_t.getCPtr(value));
+      if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    } 
+    get {
+      SWIGTYPE_p_TfEnvSettingT_bool_t ret = new SWIGTYPE_p_TfEnvSettingT_bool_t(UsdCsPINVOKE.USD_FORCE_DEFAULT_MATERIALS_SCOPE_NAME_get(), true);
+      if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
+    } 
+  }
+
+  public static TfToken UsdUtilsGetAlphaAttributeNameForColor(TfToken colorAttrName) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdUtilsGetAlphaAttributeNameForColor(TfToken.getCPtr(colorAttrName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static TfToken UsdUtilsGetModelNameFromRootLayer(SdfLayerHandle rootLayer) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdUtilsGetModelNameFromRootLayer(SdfLayerHandle.getCPtr(rootLayer)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_std__setT_UsdUtilsRegisteredVariantSet_t UsdUtilsGetRegisteredVariantSets() {
+    SWIGTYPE_p_std__setT_UsdUtilsRegisteredVariantSet_t ret = new SWIGTYPE_p_std__setT_UsdUtilsRegisteredVariantSet_t(UsdCsPINVOKE.UsdUtilsGetRegisteredVariantSets(), false);
+    return ret;
+  }
+
+  public static UsdPrim UsdUtilsGetPrimAtPathWithForwarding(UsdStageWeakPtr stage, SdfPath path) {
+    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdUtilsGetPrimAtPathWithForwarding(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdPrim UsdUtilsUninstancePrimAtPath(UsdStageWeakPtr stage, SdfPath path) {
+    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdUtilsUninstancePrimAtPath(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static TfToken UsdUtilsGetPrimaryUVSetName() {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdUtilsGetPrimaryUVSetName(), true);
+    return ret;
+  }
+
+  public static TfToken UsdUtilsGetPrefName() {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdUtilsGetPrefName(), true);
+    return ret;
+  }
+
+  public static TfToken UsdUtilsGetMaterialsScopeName(bool forceDefault) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdUtilsGetMaterialsScopeName__SWIG_0(forceDefault), true);
+    return ret;
+  }
+
+  public static TfToken UsdUtilsGetMaterialsScopeName() {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdUtilsGetMaterialsScopeName__SWIG_1(), true);
+    return ret;
+  }
+
+  public static TfToken UsdUtilsGetPrimaryCameraName(bool forceDefault) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdUtilsGetPrimaryCameraName__SWIG_0(forceDefault), true);
+    return ret;
+  }
+
+  public static TfToken UsdUtilsGetPrimaryCameraName() {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdUtilsGetPrimaryCameraName__SWIG_1(), true);
+    return ret;
+  }
+
+  public static void UsdUtilsStitchLayers(SdfLayerHandle strongLayer, SdfLayerHandle weakLayer) {
+    UsdCsPINVOKE.UsdUtilsStitchLayers(SdfLayerHandle.getCPtr(strongLayer), SdfLayerHandle.getCPtr(weakLayer));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void UsdUtilsStitchInfo(SdfSpecHandle strongObj, SdfSpecHandle weakObj) {
+    UsdCsPINVOKE.UsdUtilsStitchInfo(SdfSpecHandle.getCPtr(strongObj), SdfSpecHandle.getCPtr(weakObj));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static bool UsdUtilsStitchClips(SdfLayerHandle resultLayer, StdStringVector clipLayerFiles, SdfPath clipPath, double startTimeCode, double endTimeCode, TfToken clipSet) {
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClips__SWIG_0(SdfLayerHandle.getCPtr(resultLayer), StdStringVector.getCPtr(clipLayerFiles), SdfPath.getCPtr(clipPath), startTimeCode, endTimeCode, TfToken.getCPtr(clipSet));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsStitchClips(SdfLayerHandle resultLayer, StdStringVector clipLayerFiles, SdfPath clipPath, double startTimeCode, double endTimeCode) {
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClips__SWIG_1(SdfLayerHandle.getCPtr(resultLayer), StdStringVector.getCPtr(clipLayerFiles), SdfPath.getCPtr(clipPath), startTimeCode, endTimeCode);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsStitchClips(SdfLayerHandle resultLayer, StdStringVector clipLayerFiles, SdfPath clipPath, double startTimeCode) {
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClips__SWIG_2(SdfLayerHandle.getCPtr(resultLayer), StdStringVector.getCPtr(clipLayerFiles), SdfPath.getCPtr(clipPath), startTimeCode);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsStitchClips(SdfLayerHandle resultLayer, StdStringVector clipLayerFiles, SdfPath clipPath) {
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClips__SWIG_3(SdfLayerHandle.getCPtr(resultLayer), StdStringVector.getCPtr(clipLayerFiles), SdfPath.getCPtr(clipPath));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsStitchClipsTopology(SdfLayerHandle topologyLayer, StdStringVector clipLayerFiles) {
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClipsTopology(SdfLayerHandle.getCPtr(topologyLayer), StdStringVector.getCPtr(clipLayerFiles));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsStitchClipsTemplate(SdfLayerHandle resultLayer, SdfLayerHandle topologyLayer, SdfPath clipPath, string templatePath, double startTime, double endTime, double stride, double activeOffset, TfToken clipSet) {
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClipsTemplate__SWIG_0(SdfLayerHandle.getCPtr(resultLayer), SdfLayerHandle.getCPtr(topologyLayer), SdfPath.getCPtr(clipPath), templatePath, startTime, endTime, stride, activeOffset, TfToken.getCPtr(clipSet));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsStitchClipsTemplate(SdfLayerHandle resultLayer, SdfLayerHandle topologyLayer, SdfPath clipPath, string templatePath, double startTime, double endTime, double stride, double activeOffset) {
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClipsTemplate__SWIG_1(SdfLayerHandle.getCPtr(resultLayer), SdfLayerHandle.getCPtr(topologyLayer), SdfPath.getCPtr(clipPath), templatePath, startTime, endTime, stride, activeOffset);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsStitchClipsTemplate(SdfLayerHandle resultLayer, SdfLayerHandle topologyLayer, SdfPath clipPath, string templatePath, double startTime, double endTime, double stride) {
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClipsTemplate__SWIG_2(SdfLayerHandle.getCPtr(resultLayer), SdfLayerHandle.getCPtr(topologyLayer), SdfPath.getCPtr(clipPath), templatePath, startTime, endTime, stride);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string UsdUtilsGenerateClipTopologyName(string rootLayerName) {
+    string ret = UsdCsPINVOKE.UsdUtilsGenerateClipTopologyName(rootLayerName);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsCopyLayerMetadata(SdfLayerHandle source, SdfLayerHandle destination, bool skipSublayers, bool bakeUnauthoredFallbacks) {
+    bool ret = UsdCsPINVOKE.UsdUtilsCopyLayerMetadata__SWIG_0(SdfLayerHandle.getCPtr(source), SdfLayerHandle.getCPtr(destination), skipSublayers, bakeUnauthoredFallbacks);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsCopyLayerMetadata(SdfLayerHandle source, SdfLayerHandle destination, bool skipSublayers) {
+    bool ret = UsdCsPINVOKE.UsdUtilsCopyLayerMetadata__SWIG_1(SdfLayerHandle.getCPtr(source), SdfLayerHandle.getCPtr(destination), skipSublayers);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsCopyLayerMetadata(SdfLayerHandle source, SdfLayerHandle destination) {
+    bool ret = UsdCsPINVOKE.UsdUtilsCopyLayerMetadata__SWIG_2(SdfLayerHandle.getCPtr(source), SdfLayerHandle.getCPtr(destination));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsComputeCollectionIncludesAndExcludes(SWIGTYPE_p_std__setT_SdfPath_t includedRootPaths, UsdStageWeakPtr usdStage, SdfPathVector pathsToInclude, SdfPathVector pathsToExclude, double minInclusionRatio, uint maxNumExcludesBelowInclude, uint minIncludeExcludeCollectionSize, SWIGTYPE_p_TfHashSetT_SdfPath_SdfPath__Hash_t pathsToIgnore) {
+    bool ret = UsdCsPINVOKE.UsdUtilsComputeCollectionIncludesAndExcludes__SWIG_0(SWIGTYPE_p_std__setT_SdfPath_t.getCPtr(includedRootPaths), UsdStageWeakPtr.getCPtr(usdStage), SdfPathVector.getCPtr(pathsToInclude), SdfPathVector.getCPtr(pathsToExclude), minInclusionRatio, maxNumExcludesBelowInclude, minIncludeExcludeCollectionSize, SWIGTYPE_p_TfHashSetT_SdfPath_SdfPath__Hash_t.getCPtr(pathsToIgnore));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsComputeCollectionIncludesAndExcludes(SWIGTYPE_p_std__setT_SdfPath_t includedRootPaths, UsdStageWeakPtr usdStage, SdfPathVector pathsToInclude, SdfPathVector pathsToExclude, double minInclusionRatio, uint maxNumExcludesBelowInclude, uint minIncludeExcludeCollectionSize) {
+    bool ret = UsdCsPINVOKE.UsdUtilsComputeCollectionIncludesAndExcludes__SWIG_1(SWIGTYPE_p_std__setT_SdfPath_t.getCPtr(includedRootPaths), UsdStageWeakPtr.getCPtr(usdStage), SdfPathVector.getCPtr(pathsToInclude), SdfPathVector.getCPtr(pathsToExclude), minInclusionRatio, maxNumExcludesBelowInclude, minIncludeExcludeCollectionSize);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsComputeCollectionIncludesAndExcludes(SWIGTYPE_p_std__setT_SdfPath_t includedRootPaths, UsdStageWeakPtr usdStage, SdfPathVector pathsToInclude, SdfPathVector pathsToExclude, double minInclusionRatio, uint maxNumExcludesBelowInclude) {
+    bool ret = UsdCsPINVOKE.UsdUtilsComputeCollectionIncludesAndExcludes__SWIG_2(SWIGTYPE_p_std__setT_SdfPath_t.getCPtr(includedRootPaths), UsdStageWeakPtr.getCPtr(usdStage), SdfPathVector.getCPtr(pathsToInclude), SdfPathVector.getCPtr(pathsToExclude), minInclusionRatio, maxNumExcludesBelowInclude);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsComputeCollectionIncludesAndExcludes(SWIGTYPE_p_std__setT_SdfPath_t includedRootPaths, UsdStageWeakPtr usdStage, SdfPathVector pathsToInclude, SdfPathVector pathsToExclude, double minInclusionRatio) {
+    bool ret = UsdCsPINVOKE.UsdUtilsComputeCollectionIncludesAndExcludes__SWIG_3(SWIGTYPE_p_std__setT_SdfPath_t.getCPtr(includedRootPaths), UsdStageWeakPtr.getCPtr(usdStage), SdfPathVector.getCPtr(pathsToInclude), SdfPathVector.getCPtr(pathsToExclude), minInclusionRatio);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsComputeCollectionIncludesAndExcludes(SWIGTYPE_p_std__setT_SdfPath_t includedRootPaths, UsdStageWeakPtr usdStage, SdfPathVector pathsToInclude, SdfPathVector pathsToExclude) {
+    bool ret = UsdCsPINVOKE.UsdUtilsComputeCollectionIncludesAndExcludes__SWIG_4(SWIGTYPE_p_std__setT_SdfPath_t.getCPtr(includedRootPaths), UsdStageWeakPtr.getCPtr(usdStage), SdfPathVector.getCPtr(pathsToInclude), SdfPathVector.getCPtr(pathsToExclude));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdCollectionAPI UsdUtilsAuthorCollection(TfToken collectionName, UsdPrim usdPrim, SdfPathVector pathsToInclude, SdfPathVector pathsToExclude) {
+    UsdCollectionAPI ret = new UsdCollectionAPI(UsdCsPINVOKE.UsdUtilsAuthorCollection__SWIG_0(TfToken.getCPtr(collectionName), UsdPrim.getCPtr(usdPrim), SdfPathVector.getCPtr(pathsToInclude), SdfPathVector.getCPtr(pathsToExclude)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdCollectionAPI UsdUtilsAuthorCollection(TfToken collectionName, UsdPrim usdPrim, SdfPathVector pathsToInclude) {
+    UsdCollectionAPI ret = new UsdCollectionAPI(UsdCsPINVOKE.UsdUtilsAuthorCollection__SWIG_1(TfToken.getCPtr(collectionName), UsdPrim.getCPtr(usdPrim), SdfPathVector.getCPtr(pathsToInclude)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdCollectionAPIVector UsdUtilsCreateCollections(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t assignments, UsdPrim usdPrim, double minInclusionRatio, uint maxNumExcludesBelowInclude, uint minIncludeExcludeCollectionSize) {
+    UsdCollectionAPIVector ret = new UsdCollectionAPIVector(UsdCsPINVOKE.UsdUtilsCreateCollections__SWIG_0(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t.getCPtr(assignments), UsdPrim.getCPtr(usdPrim), minInclusionRatio, maxNumExcludesBelowInclude, minIncludeExcludeCollectionSize), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdCollectionAPIVector UsdUtilsCreateCollections(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t assignments, UsdPrim usdPrim, double minInclusionRatio, uint maxNumExcludesBelowInclude) {
+    UsdCollectionAPIVector ret = new UsdCollectionAPIVector(UsdCsPINVOKE.UsdUtilsCreateCollections__SWIG_1(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t.getCPtr(assignments), UsdPrim.getCPtr(usdPrim), minInclusionRatio, maxNumExcludesBelowInclude), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdCollectionAPIVector UsdUtilsCreateCollections(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t assignments, UsdPrim usdPrim, double minInclusionRatio) {
+    UsdCollectionAPIVector ret = new UsdCollectionAPIVector(UsdCsPINVOKE.UsdUtilsCreateCollections__SWIG_2(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t.getCPtr(assignments), UsdPrim.getCPtr(usdPrim), minInclusionRatio), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdCollectionAPIVector UsdUtilsCreateCollections(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t assignments, UsdPrim usdPrim) {
+    UsdCollectionAPIVector ret = new UsdCollectionAPIVector(UsdCsPINVOKE.UsdUtilsCreateCollections__SWIG_3(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t.getCPtr(assignments), UsdPrim.getCPtr(usdPrim)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfLayerHandleVector UsdUtilsGetDirtyLayers(UsdStageWeakPtr stage, bool includeClipLayers) {
+    SdfLayerHandleVector ret = new SdfLayerHandleVector(UsdCsPINVOKE.UsdUtilsGetDirtyLayers__SWIG_0(UsdStageWeakPtr.getCPtr(stage), includeClipLayers), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfLayerHandleVector UsdUtilsGetDirtyLayers(UsdStageWeakPtr stage) {
+    SdfLayerHandleVector ret = new SdfLayerHandleVector(UsdCsPINVOKE.UsdUtilsGetDirtyLayers__SWIG_1(UsdStageWeakPtr.getCPtr(stage)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static void UsdUtilsExtractExternalReferences(string filePath, StdStringVector subLayers, StdStringVector references, StdStringVector payloads) {
+    UsdCsPINVOKE.UsdUtilsExtractExternalReferences(filePath, StdStringVector.getCPtr(subLayers), StdStringVector.getCPtr(references), StdStringVector.getCPtr(payloads));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static bool UsdUtilsCreateNewUsdzPackage(SdfAssetPath assetPath, string usdzFilePath, string firstLayerName) {
+    bool ret = UsdCsPINVOKE.UsdUtilsCreateNewUsdzPackage__SWIG_0(SdfAssetPath.getCPtr(assetPath), usdzFilePath, firstLayerName);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsCreateNewUsdzPackage(SdfAssetPath assetPath, string usdzFilePath) {
+    bool ret = UsdCsPINVOKE.UsdUtilsCreateNewUsdzPackage__SWIG_1(SdfAssetPath.getCPtr(assetPath), usdzFilePath);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsCreateNewARKitUsdzPackage(SdfAssetPath assetPath, string usdzFilePath, string firstLayerName) {
+    bool ret = UsdCsPINVOKE.UsdUtilsCreateNewARKitUsdzPackage__SWIG_0(SdfAssetPath.getCPtr(assetPath), usdzFilePath, firstLayerName);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsCreateNewARKitUsdzPackage(SdfAssetPath assetPath, string usdzFilePath) {
+    bool ret = UsdCsPINVOKE.UsdUtilsCreateNewARKitUsdzPackage__SWIG_1(SdfAssetPath.getCPtr(assetPath), usdzFilePath);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsComputeAllDependencies(SdfAssetPath assetPath, SdfLayerRefPtrVector layers, StdStringVector assets, StdStringVector unresolvedPaths) {
+    bool ret = UsdCsPINVOKE.UsdUtilsComputeAllDependencies(SdfAssetPath.getCPtr(assetPath), SdfLayerRefPtrVector.getCPtr(layers), StdStringVector.getCPtr(assets), StdStringVector.getCPtr(unresolvedPaths));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static void UsdUtilsModifyAssetPaths(SdfLayerHandle layer, SWIGTYPE_p_std__functionT_std__string_fstd__string_const_RF_t modifyFn) {
+    UsdCsPINVOKE.UsdUtilsModifyAssetPaths(SdfLayerHandle.getCPtr(layer), SWIGTYPE_p_std__functionT_std__string_fstd__string_const_RF_t.getCPtr(modifyFn));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static SdfLayer UsdUtilsFlattenLayerStack(UsdStageWeakPtr stage, string tag) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdUtilsFlattenLayerStack__SWIG_0(UsdStageWeakPtr.getCPtr(stage), tag);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfLayer UsdUtilsFlattenLayerStack(UsdStageWeakPtr stage) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdUtilsFlattenLayerStack__SWIG_1(UsdStageWeakPtr.getCPtr(stage));
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfLayer UsdUtilsFlattenLayerStack(UsdStageWeakPtr stage, SWIGTYPE_p_std__functionT_std__string_fSdfLayerHandle_const_R_std__string_const_RF_t resolveAssetPathFn, string tag) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdUtilsFlattenLayerStack__SWIG_2(UsdStageWeakPtr.getCPtr(stage), SWIGTYPE_p_std__functionT_std__string_fSdfLayerHandle_const_R_std__string_const_RF_t.getCPtr(resolveAssetPathFn), tag);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfLayer UsdUtilsFlattenLayerStack(UsdStageWeakPtr stage, SWIGTYPE_p_std__functionT_std__string_fSdfLayerHandle_const_R_std__string_const_RF_t resolveAssetPathFn) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdUtilsFlattenLayerStack__SWIG_3(UsdStageWeakPtr.getCPtr(stage), SWIGTYPE_p_std__functionT_std__string_fSdfLayerHandle_const_R_std__string_const_RF_t.getCPtr(resolveAssetPathFn));
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string UsdUtilsFlattenLayerStackResolveAssetPath(SdfLayerHandle sourceLayer, string assetPath) {
+    string ret = UsdCsPINVOKE.UsdUtilsFlattenLayerStackResolveAssetPath(SdfLayerHandle.getCPtr(sourceLayer), assetPath);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static void TestCall(TaskCallback cb, int start, int end) {
     UsdCsPINVOKE.TestCall(TaskCallback.getCPtr(cb), start, end);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -3226,6 +4104,12 @@ public class UsdCs {
     return ret;
   }
 
+  public static bool WriteUsdZip(string usdzFilePath, StdStringVector filesToArchive) {
+    bool ret = UsdCsPINVOKE.WriteUsdZip(usdzFilePath, StdStringVector.getCPtr(filesToArchive));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static VtValue GetFusedDisplayColor(UsdPrim prim, UsdTimeCode time) {
     VtValue ret = new VtValue(UsdCsPINVOKE.GetFusedDisplayColor(UsdPrim.getCPtr(prim), UsdTimeCode.getCPtr(time)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -3240,8 +4124,6 @@ public class UsdCs {
 
   public static readonly int PXR_USE_NAMESPACES = UsdCsPINVOKE.PXR_USE_NAMESPACES_get();
   public static readonly int JS_VALUE_API_VERSION = UsdCsPINVOKE.JS_VALUE_API_VERSION_get();
-  public static readonly int VT_DICTIONARY_MAX_ARITY = UsdCsPINVOKE.VT_DICTIONARY_MAX_ARITY_get();
-  public static readonly string BOOST_PP_FILENAME_1 = UsdCsPINVOKE.BOOST_PP_FILENAME_1_get();
   public static readonly int USDGEOM_CYLINDER_API_VERSION = UsdCsPINVOKE.USDGEOM_CYLINDER_API_VERSION_get();
   public static readonly int USDGEOM_XFORM_CACHE_API_VERSION = UsdCsPINVOKE.USDGEOM_XFORM_CACHE_API_VERSION_get();
 }

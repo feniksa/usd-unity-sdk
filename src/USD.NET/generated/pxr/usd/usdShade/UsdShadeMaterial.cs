@@ -355,8 +355,8 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
     return ret;
   }
 
-  public static SWIGTYPE_p_std__vectorT_UsdGeomSubset_t GetMaterialBindSubsets(UsdGeomImageable geom) {
-    SWIGTYPE_p_std__vectorT_UsdGeomSubset_t ret = new SWIGTYPE_p_std__vectorT_UsdGeomSubset_t(UsdCsPINVOKE.UsdShadeMaterial_GetMaterialBindSubsets(UsdGeomImageable.getCPtr(geom)), true);
+  public static UsdGeomSubsetVector GetMaterialBindSubsets(UsdGeomImageable geom) {
+    UsdGeomSubsetVector ret = new UsdGeomSubsetVector(UsdCsPINVOKE.UsdShadeMaterial_GetMaterialBindSubsets(UsdGeomImageable.getCPtr(geom)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -369,24 +369,6 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
 
   public static TfToken GetMaterialBindSubsetsFamilyType(UsdGeomImageable geom) {
     TfToken ret = new TfToken(UsdCsPINVOKE.UsdShadeMaterial_GetMaterialBindSubsetsFamilyType(UsdGeomImageable.getCPtr(geom)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static UsdGeomFaceSetAPI CreateMaterialFaceSet(UsdPrim prim) {
-    UsdGeomFaceSetAPI ret = new UsdGeomFaceSetAPI(UsdCsPINVOKE.UsdShadeMaterial_CreateMaterialFaceSet(UsdPrim.getCPtr(prim)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static UsdGeomFaceSetAPI GetMaterialFaceSet(UsdPrim prim) {
-    UsdGeomFaceSetAPI ret = new UsdGeomFaceSetAPI(UsdCsPINVOKE.UsdShadeMaterial_GetMaterialFaceSet(UsdPrim.getCPtr(prim)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool HasMaterialFaceSet(UsdPrim prim) {
-    bool ret = UsdCsPINVOKE.UsdShadeMaterial_HasMaterialFaceSet(UsdPrim.getCPtr(prim));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

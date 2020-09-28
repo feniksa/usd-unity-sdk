@@ -18,12 +18,11 @@
 
 %include "usdGeomTokens.i"
 
-%include "usdGeomFaceSetAPI.i"
 %include "usdGeomMotionAPI.i"
-%include "usdGeomCollectionAPI.i"
 
 %include "usdGeomPrimvar.i"
 %include "usdGeomScope.i"
+%include "usdGeomSubset.i"
 
 %include "usdGeomImageable.i"
 %include "usdGeomXformOp.i"
@@ -53,6 +52,6 @@
 
 %include "usdGeomConstraintTarget.i"
 %include "usdGeomXformCache.i"
-%include "usdGeomBBoxCache.i"
+%include "usdGeomBboxCache.i"
 %include "usdGeomModelAPI.i"
 

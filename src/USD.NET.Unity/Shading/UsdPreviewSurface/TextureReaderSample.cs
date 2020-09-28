@@ -105,12 +105,12 @@ namespace USD.NET.Unity {
     /// channel's value.
     /// </remarks>
     public class Outputs : SampleBase {
-      public float r;
-      public float g;
-      public float b;
-      public float a;
-      public Vector3 rgb;
-      public Vector4 rgba;
+      public float? r;
+      public float? g;
+      public float? b;
+      public float? a;
+      public Vector3? rgb;
+      public Vector4? rgba;
     }
 
     [UsdNamespace("outputs")]

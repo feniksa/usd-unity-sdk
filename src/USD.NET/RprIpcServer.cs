@@ -78,7 +78,10 @@ public class RprIpcServer : global::System.IDisposable {
   
   }
 
-  public RprIpcServer(RprIpcServer.Listener Listener) : this(UsdCsPINVOKE.new_RprIpcServer(RprIpcServer.Listener.getCPtr(Listener)), true) {
+  public RprIpcServer() : this(UsdCsPINVOKE.new_RprIpcServer__SWIG_0(), true) {
+  }
+
+  public RprIpcServer(RprIpcServer.Listener Listener) : this(UsdCsPINVOKE.new_RprIpcServer__SWIG_1(RprIpcServer.Listener.getCPtr(Listener)), true) {
   }
 
   public RprIpcServer.Layer AddLayer(SdfPath layerPath) {

@@ -27,6 +27,12 @@ const char* const kInAppCommunicationSockAddr = "inproc://RprIpcServer";
 // Construction
 //------------------------------------------------------------------------------
 
+RprIpcServer::RprIpcServer()
+    : RprIpcServer(nullptr)
+{
+}
+
+
 RprIpcServer::RprIpcServer(Listener* listener)
     : m_listener(listener) {
     auto& zmqContext = GetZmqContext();
@@ -298,9 +304,14 @@ void RprIpcServer::ProcessControlSocket() {
             payloadSize = msg.size();
         }
 
-        auto response = m_listener->ProcessCommand(command, payload, payloadSize);
-        TF_DEBUG(RPR_IPC_DEBUG_MESSAGES).Msg("RprIpcServer: response for \"%s\" command: %d\n", command.c_str(), response);
-        m_controlSocket.send(GetZmqMessage(response ? RprIpcTokens->ok : RprIpcTokens->fail));
+		if (m_listener) {
+			auto response = m_listener->ProcessCommand(command, payload, payloadSize);
+			TF_DEBUG(RPR_IPC_DEBUG_MESSAGES).Msg("RprIpcServer: response for \"%s\" command: %d\n", command.c_str(), response);
+			m_controlSocket.send(GetZmqMessage(response ? RprIpcTokens->ok : RprIpcTokens->fail));
+		}
+		else {
+			m_controlSocket.send(GetZmqMessage(RprIpcTokens->ok));
+		}
     }
 }
 

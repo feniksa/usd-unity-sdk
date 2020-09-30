@@ -586,9 +586,9 @@
     <Compile Include="generated\UsdCs\TaskCallbackVector.cs" />
     <Compile Include="generated\UsdCs\UsdCs.cs" />
     <Compile Include="generated\UsdCs\UsdCsPINVOKE.cs" />
-    <Compile Include="ipc\RprIpcServer.cs" />
     <Compile Include="pooling\ArrayUnpool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RprIpcServer.cs" />
     <Compile Include="serialization\BackgroundExecutor.cs" />
     <Compile Include="serialization\CodeGen.cs" />
     <Compile Include="serialization\Primvar.cs" />

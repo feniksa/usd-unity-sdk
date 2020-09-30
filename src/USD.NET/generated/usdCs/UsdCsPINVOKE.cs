@@ -29369,14 +29369,17 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SetFusedDisplayColor")]
   public static extern bool SetFusedDisplayColor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_Listener_ProcessCommand")]
-  public static extern bool RprIpcServer_Listener_ProcessCommand(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, uint jarg4);
-
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_RprIpcServer_Listener")]
   public static extern void delete_RprIpcServer_Listener(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_RprIpcServer")]
-  public static extern global::System.IntPtr new_RprIpcServer(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_Listener_ProcessCommand")]
+  public static extern bool RprIpcServer_Listener_ProcessCommand(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, uint jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_RprIpcServer__SWIG_0")]
+  public static extern global::System.IntPtr new_RprIpcServer__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_RprIpcServer__SWIG_1")]
+  public static extern global::System.IntPtr new_RprIpcServer__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_RprIpcServer")]
   public static extern void delete_RprIpcServer(global::System.Runtime.InteropServices.HandleRef jarg1);

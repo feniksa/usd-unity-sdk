@@ -39,10 +39,14 @@ public:
     /// Each callback is called from the network thread
     class RPR_IPC_API Listener {
     public:
+		Listener() = default;
 		virtual ~Listener() {}
+
         /// The callback to receive commands sent by @see RprIpcClient#SendCommand
-        virtual bool ProcessCommand(std::string const& command,
-                                    uint8_t* payload, size_t pyaloadSize) = 0;
+		virtual bool ProcessCommand(std::string const& command,
+			uint8_t* payload, size_t pyaloadSize) {
+			return false;
+		}
     };
 
     RPR_IPC_API

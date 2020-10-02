@@ -29369,6 +29369,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SetFusedDisplayColor")]
   public static extern bool SetFusedDisplayColor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_RprIpcServer_Listener")]
+  public static extern global::System.IntPtr new_RprIpcServer_Listener();
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_RprIpcServer_Listener")]
   public static extern void delete_RprIpcServer_Listener(global::System.Runtime.InteropServices.HandleRef jarg1);
 

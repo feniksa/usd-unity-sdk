@@ -1,4 +1,4 @@
-%module(directors="1") USDIPC
+%module USDIPC
 
 %define RPR_IPC_API %enddef
 

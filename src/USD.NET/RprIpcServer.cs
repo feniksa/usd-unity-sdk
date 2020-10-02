@@ -81,7 +81,7 @@ public class RprIpcServer : global::System.IDisposable {
   
   }
 
-  public RprIpcServer() : this(UsdCsPINVOKE.new_RprIpcServer__SWIG_0(), true) {
+  public RprIpcServer(RprIpcServer.Listener Listener, string bind_address) : this(UsdCsPINVOKE.new_RprIpcServer__SWIG_0(RprIpcServer.Listener.getCPtr(Listener), bind_address), true) {
   }
 
   public RprIpcServer(RprIpcServer.Listener Listener) : this(UsdCsPINVOKE.new_RprIpcServer__SWIG_1(RprIpcServer.Listener.getCPtr(Listener)), true) {

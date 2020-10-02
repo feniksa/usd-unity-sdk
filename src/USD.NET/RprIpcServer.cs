@@ -70,6 +70,9 @@ public class RprIpcServer : global::System.IDisposable {
       }
     }
   
+    public Listener() : this(UsdCsPINVOKE.new_RprIpcServer_Listener(), true) {
+    }
+  
     public virtual bool ProcessCommand(string command, SWIGTYPE_p_unsigned_char payload, uint pyaloadSize) {
       bool ret = UsdCsPINVOKE.RprIpcServer_Listener_ProcessCommand(swigCPtr, command, SWIGTYPE_p_unsigned_char.getCPtr(payload), pyaloadSize);
       if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

@@ -37,20 +37,19 @@ public:
     // ---------------------------------------------------------------------
 
     /// Each callback is called from the network thread
-    class RPR_IPC_API Listener {
+    class Listener {
     public:
-		Listener() = default;
-		virtual ~Listener() {}
-
+		Listener()          = default;
+		virtual ~Listener() = default;
         /// The callback to receive commands sent by @see RprIpcClient#SendCommand
-		virtual bool ProcessCommand(std::string const& command,
-			uint8_t* payload, size_t pyaloadSize) {
+        virtual bool ProcessCommand(std::string const& command,
+			uint8_t* payload, size_t payloadSize) {
 			return false;
 		}
     };
 
     RPR_IPC_API
-    RprIpcServer(Listener* Listener, const char* bind_address = "tcp://127.0.0.1:*");
+    RprIpcServer(Listener* Listener, const char* bind_server = "tcp://127.0.0.1:*");
 
     RPR_IPC_API
     ~RprIpcServer();
@@ -66,14 +65,14 @@ public:
 
     /// Create a layer with a particular \p layerPath. 
     /// Creating a few layers with the same layerPath is prohibited.
+    /// There might be few root layers, in such case,
+    /// they all combined through sublayering.
     RPR_IPC_API
-    Layer* AddLayer(SdfPath const& layerPath);
+    Layer* AddLayer(SdfPath const& layerPath, bool isRoot = true);
 
     /// Notify server about layer changes. This call leads to layer encoding
     /// process and sending of the encoded stage to the client
     ///
-    /// TODO: check if we can avoid explicitly calling this
-    /// by exploiting USD's notification system
     RPR_IPC_API
     void OnLayerEdit(SdfPath const& layerPath, Layer* layer);
 
@@ -83,6 +82,10 @@ public:
     RPR_IPC_API
     void RemoveLayer(SdfPath const& layerPath);
 
+    /// Return a path that can be used as reference assetPath (see SdfReference)
+    RPR_IPC_API
+    static std::string GetLayerReferencePath(SdfPath const& layerPath);
+
 private:
     class Sender;
 
@@ -90,18 +93,24 @@ public:
     class Layer {
     public:
 		RPR_IPC_API
-        Layer();
+        Layer(bool isRoot, std::string const& layerIdentifier);
 
         /// Get UsdStage of the current layer. The returned stage can be edited
         /// directly. Any number of edits can be done to the stage. Calling
         /// RprIpcServer::OnLayerEdit is required to notify the client about changes.
+		RPR_IPC_API
         UsdStagePtr GetStage() { return m_stage; };
+
+		RPR_IPC_API
+        bool IsRoot() const { return m_isRoot; }
 
     private:
         void OnEdit();
         std::string const& GetEncodedStage();
 
     private:
+        const bool m_isRoot;
+
         UsdStageRefPtr m_stage;
         uint64_t m_timestamp;
 
@@ -157,7 +166,7 @@ private:
     /// Sender should be used on the same thread it was created on. It can be created only with \c GetSender.
     class Sender {
     public:
-        void SendLayer(SdfPath const& layerPath, std::string layer);
+        void SendLayer(SdfPath const& layerPath, bool isRoot, std::string layer);
         void RemoveLayer(SdfPath const& layerPath);
 
     private:
@@ -180,6 +189,21 @@ private:
 
 private:
     std::unordered_map<std::thread::id, std::weak_ptr<Sender>> m_senders;
+
+private:
+
+    // ---------------------------------------------------------------------
+    /// \name Layer creation utility functions
+    /// @{
+    // ---------------------------------------------------------------------
+
+    /// Each layer should have a filesystem-bound identifier to be referencable
+    std::string GetLayerIdentifier(const char* layerPath);
+
+    /// @}
+
+private:
+    const std::string m_layersIdentifierPrefix;
 };
 
 PXR_NAMESPACE_CLOSE_SCOPE

@@ -30186,8 +30186,11 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_RprIpcServer")]
   public static extern void delete_RprIpcServer(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_AddLayer")]
-  public static extern global::System.IntPtr RprIpcServer_AddLayer(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_AddLayer__SWIG_0")]
+  public static extern global::System.IntPtr RprIpcServer_AddLayer__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_AddLayer__SWIG_1")]
+  public static extern global::System.IntPtr RprIpcServer_AddLayer__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_OnLayerEdit")]
   public static extern void RprIpcServer_OnLayerEdit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
@@ -30195,11 +30198,17 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_RemoveLayer")]
   public static extern void RprIpcServer_RemoveLayer(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_GetLayerReferencePath")]
+  public static extern string RprIpcServer_GetLayerReferencePath(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_RprIpcServer_Layer")]
-  public static extern global::System.IntPtr new_RprIpcServer_Layer();
+  public static extern global::System.IntPtr new_RprIpcServer_Layer(bool jarg1, string jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_Layer_GetStage")]
   public static extern global::System.IntPtr RprIpcServer_Layer_GetStage(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_Layer_IsRoot")]
+  public static extern bool RprIpcServer_Layer_IsRoot(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_RprIpcServer_Layer")]
   public static extern void delete_RprIpcServer_Layer(global::System.Runtime.InteropServices.HandleRef jarg1);

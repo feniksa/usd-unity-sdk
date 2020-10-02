@@ -35,30 +35,35 @@ PXR_NAMESPACE_OPEN_SCOPE
 
 const char* const kInAppCommunicationSockAddr = "inproc://RprIpcClient";
 
+#define RPR_IPC_CLIENT_DEBUG_MSG(fmt, ...) TF_DEBUG(RPR_IPC_DEBUG).Msg("RprIpcClient: " fmt, ##__VA_ARGS__)
+
 //------------------------------------------------------------------------------
 // Construction
 //------------------------------------------------------------------------------
 
 RprIpcClientRefPtr RprIpcClient::Create(
     std::string const& serverAddress,
-    std::function<void()> onStageUpdateCallback) {
-    return TfCreateRefPtr(new RprIpcClient(serverAddress, onStageUpdateCallback));
+    std::function<void()> onStageUpdateCallback,
+    std::string const& layersBindDir) {
+    return TfCreateRefPtr(new RprIpcClient(serverAddress, onStageUpdateCallback, layersBindDir));
 }
 
 RprIpcClient::RprIpcClient(
     std::string const& serverAddress,
-    std::function<void()> onStageUpdateCallback)
+    std::function<void()> onStageUpdateCallback,
+    std::string const& layersBindDir)
     : m_serverAddress(serverAddress)
     , m_dataSocket(GetZmqContext(), zmq::socket_type::pull)
-    , m_onStageUpdate(std::move(onStageUpdateCallback)) {
+    , m_onStageUpdate(std::move(onStageUpdateCallback))
+    , m_layerController(layersBindDir) {
     m_dataSocket.bind("tcp://0.0.0.0:*");
 
     auto dataSocketPort = GetSocketPort(m_dataSocket);
     auto connectReply = TryRequest([&dataSocketPort](zmq::socket_t& socket) {
         socket.send(GetZmqMessage(RprIpcTokens->connect), zmq::send_flags::sndmore);
-        socket.send(GetZmqMessage(dataSocketPort), zmq::send_flags::none);
+        socket.send(GetZmqMessage(dataSocketPort));
 
-        TF_DEBUG(RPR_IPC_DEBUG_MESSAGES).Msg("RprIpcClient: sending connect command: port=%s\n", dataSocketPort.c_str());
+        RPR_IPC_CLIENT_DEBUG_MSG("sending connect command: port=%s\n", dataSocketPort.c_str());
     }, 1000);
 
     if (connectReply != "ok") {
@@ -143,7 +148,7 @@ void RprIpcClient::RunNetworkWorker() {
                     m_controlSocket.recv(msg);
                     auto response = std::to_string(msg);
 
-                    TF_DEBUG(RPR_IPC_DEBUG_MESSAGES).Msg("RprIpcClient: server responded on the \"%s\" command: %s\n", command.c_str(), response.c_str());
+                    RPR_IPC_CLIENT_DEBUG_MSG("server responded on the \"%s\" command: %s\n", command.c_str(), response.c_str());
                 }
             }
         } catch (zmq::error_t& e) {
@@ -199,11 +204,19 @@ void RprIpcClient::ProcessDataSocket() {
                 RecvMore(m_dataSocket, msg);
                 auto layerPath = std::to_string(msg);
 
-                TF_DEBUG(RPR_IPC_DEBUG_MESSAGES).Msg("RprIpcClient: received \"%s\" dataType: %s\n", dataType.c_str(), layerPath.c_str());
+                RPR_IPC_CLIENT_DEBUG_MSG("received \"%s\" dataType: %s\n", dataType.c_str(), layerPath.c_str());
 
-                if (dataType.size() == RprIpcTokens->layer.size()) {
+                if (RprIpcTokens->layer == dataType) {
                     RecvMore(m_dataSocket, msg);
-                    m_layerController.AddLayer(layerPath, msg.data<char>(), msg.size());
+                    bool isRoot = true;
+                    if (msg.size() == 1 && msg.data<char>()[0] == '0') {
+                        isRoot = false;
+                    }
+
+                    RecvMore(m_dataSocket, msg);
+                    m_layerController.AddLayer(layerPath, isRoot, msg.data<char>(), msg.size());
+
+                    RPR_IPC_CLIENT_DEBUG_MSG("%.*s\n", int(msg.size()), msg.data<char>());
                 } else /*if (RprIpcTokens->layerRemove == dataType)*/ {
                     m_layerController.RemoveLayer(layerPath);
                 }
@@ -230,8 +243,18 @@ void RprIpcClient::ProcessDataSocket() {
 // LayerController
 //------------------------------------------------------------------------------
 
-RprIpcClient::LayerController::LayerController()
-    : m_rootStage(UsdStage::CreateNew(GetLayerSavePath("/root"))) {
+static std::string GetLayersBindDir(std::string const& userLayersBindDir) {
+    if (userLayersBindDir.empty() && TfDebug::IsEnabled(RPR_IPC_DEBUG)) {
+        return ArchGetTmpDir() + std::string(ARCH_PATH_SEP "ipcClient");
+    }
+
+    return TfAbsPath(userLayersBindDir);
+}
+
+RprIpcClient::LayerController::LayerController(
+    std::string const& layersBindDir)
+    : m_layersBindDir(GetLayersBindDir(layersBindDir))
+    , m_rootStage(CreateRootStage()) {
 
 }
 
@@ -241,34 +264,33 @@ RprIpcClient::LayerController::~LayerController() {
 
 void RprIpcClient::LayerController::AddLayer(
     std::string const& layerPath,
+    bool isRoot,
     char* encodedLayer,
     size_t encodedLayerSize) {
     auto it = m_layers.find(layerPath);
-    if (it == m_layers.end()) {
-        m_updates[layerPath] = LayerUpdateType::Added;
-        m_layers.insert(layerPath);
-        TF_DEBUG(RPR_IPC_DEBUG_MESSAGES).Msg("RprIpcClient: new layer: %s\n", layerPath.c_str());
+    if (it != m_layers.end()) {
+        RPR_IPC_CLIENT_DEBUG_MSG("layer edited (isRoot=%d): %s\n", int(isRoot), layerPath.c_str());
     } else {
-        m_updates[layerPath] = LayerUpdateType::Edited;
-        TF_DEBUG(RPR_IPC_DEBUG_MESSAGES).Msg("RprIpcClient: layer edited: %s\n", layerPath.c_str());
+        RPR_IPC_CLIENT_DEBUG_MSG("new layer (isRoot=%d): %s\n", int(isRoot), layerPath.c_str());
+
+        auto layer = CreateLayer(layerPath);
+        if (!layer) {
+            TF_RUNTIME_ERROR("Failed to create SdfLayer for \"%s\" layer", layerPath.c_str());
+            return;
+        }
+
+        if (isRoot) {
+            m_dirtyBits |= DirtyRootLayers;
+            m_rootLayers.emplace(layerPath, layer);
+        }
+        it = m_layers.emplace(layerPath, std::move(layer)).first;
     }
+    m_dirtyBits |= DirtyLayers;
 
-    auto layerSavePath = GetLayerSavePath(layerPath.c_str());
-    if (!TfMakeDirs(TfGetPathName(layerSavePath), -1)) {
-        TF_RUNTIME_ERROR("Cannot create directory for \"%s\" layer", layerSavePath.c_str());
-        return;
-    }
-
-    std::ofstream layerFile(layerSavePath);
-    if (layerFile.fail()) {
-        TF_RUNTIME_ERROR("Cannot create \"%s\" layer file", layerSavePath.c_str());
-        return;
-    }
-
-    layerFile.write(encodedLayer, encodedLayerSize);
-
-    if (layerFile.fail()) {
-        TF_RUNTIME_ERROR("Failed to write \"%s\" layer file", layerSavePath.c_str());
+    // TODO: avoid this nasty copy
+    std::string encodedLayerStr(encodedLayer, encodedLayerSize);
+    if (!it->second->ImportFromString(encodedLayerStr)) {
+        TF_RUNTIME_ERROR("Failed to set content of SdfLayer \"%s\" from ipc data", layerPath.c_str());
     }
 }
 
@@ -278,55 +300,72 @@ void RprIpcClient::LayerController::RemoveLayer(
     if (it == m_layers.end()) {
         TF_RUNTIME_ERROR("Failed to remove \"%s\" layer: does not exist", layerPath.c_str());
     } else {
-        TF_DEBUG(RPR_IPC_DEBUG_MESSAGES).Msg("RprIpcClient: removing layer: %s\n", layerPath.c_str());
-        m_updates[layerPath] = LayerUpdateType::Removed;
+        RPR_IPC_CLIENT_DEBUG_MSG("removing layer: %s\n", layerPath.c_str());
 
-        auto layerSavePath = GetLayerSavePath(layerPath.c_str());
-        ArchUnlinkFile(layerSavePath.c_str());
+        if (!InMemoryMode()) {
+            auto layerSavePath = GetLayerSavePath(layerPath.c_str());
+            ArchUnlinkFile(layerSavePath.c_str());
+        }
+        m_layers.erase(it);
+
+        auto rootLayerIt = m_rootLayers.find(layerPath);
+        if (rootLayerIt != m_rootLayers.end()) {
+            m_dirtyBits |= DirtyRootLayers;
+            m_rootLayers.erase(rootLayerIt);
+        }
     }
 }
 
 bool RprIpcClient::LayerController::Update() {
-    if (m_updates.empty()) return false;
+    if (m_dirtyBits == Clean) return false;
 
-    //SdfChangeBlock changeBlock;
-    auto sublayerPaths = m_rootStage->GetRootLayer()->GetSubLayerPaths();
+    if (m_dirtyBits & DirtyRootLayers) {
+        SdfChangeBlock changeBlock;
+        auto targetLayer = InMemoryMode() ? m_rootStage->GetSessionLayer() : m_rootStage->GetRootLayer();
+        auto sublayerPaths = targetLayer->GetSubLayerPaths();
 
-    for (auto const& entry : m_updates) {
-        auto& layerPath = entry.first;
-        auto layerFilePath = GetLayerFilePath(layerPath.c_str());
+        sublayerPaths.clear();
+        for (auto& entry : m_rootLayers) {
+            auto& layer = entry.second;
 
-        size_t layerIdx = sublayerPaths.Find(layerFilePath);
-
-        if (entry.second == LayerUpdateType::Added) {
-            if (layerIdx != size_t(-1)) {
-                TF_CODING_ERROR("Invalid data from the server: \"%s\" already exists", layerPath.c_str());
+            if (InMemoryMode()) {
+                sublayerPaths.insert(sublayerPaths.begin(), layer->GetIdentifier());
             } else {
-                TF_DEBUG(RPR_IPC_DEBUG_MESSAGES).Msg("RprIpcClient: adding layer: %s\n", layerPath.c_str());
-                sublayerPaths.insert(sublayerPaths.begin(), layerFilePath);
-            }
-        } else if (entry.second == LayerUpdateType::Removed) {
-            if (layerIdx == size_t(-1)) {
-                TF_CODING_ERROR("Invalid data from the server: \"%s\" does not exist", layerPath.c_str());
-            } else {
-                TF_DEBUG(RPR_IPC_DEBUG_MESSAGES).Msg("RprIpcClient: removing layer: %s\n", layerPath.c_str());
-                sublayerPaths.Erase(layerIdx);
+                auto sublayerPath = "." + layer->GetIdentifier().substr(m_layersBindDir.size());
+                sublayerPaths.insert(sublayerPaths.begin(), sublayerPath);
             }
         }
     }
-    m_updates.clear();
 
-    m_rootStage->Save();
-
+    m_dirtyBits = Clean;
     return true;
 }
 
-std::string RprIpcClient::LayerController::GetLayerSavePath(const char* layerPath) {
-    return TfNormPath(TfStringPrintf("%s%s.usda", ArchGetTmpDir(), layerPath));
+UsdStageRefPtr RprIpcClient::LayerController::CreateRootStage() {
+    if (InMemoryMode()) {
+        return UsdStage::CreateInMemory();
+    } else {
+        RPR_IPC_CLIENT_DEBUG_MSG("Layers save directory: %s\n", m_layersBindDir.c_str());
+        return UsdStage::CreateNew(GetLayerSavePath("/root"));
+    }
 }
 
-std::string RprIpcClient::LayerController::GetLayerFilePath(const char* layerPath) {
-    return TfStringPrintf(".%s.usda", layerPath);
+SdfLayerRefPtr RprIpcClient::LayerController::CreateLayer(std::string const& layerPath) {
+    if (InMemoryMode()) {
+        return SdfLayer::CreateAnonymous(layerPath + ".usda");
+    } else {
+        auto layerSavePath = GetLayerSavePath(layerPath.c_str());
+        if (!TfMakeDirs(TfGetPathName(layerSavePath), -1)) {
+            TF_RUNTIME_ERROR("Cannot create directory for \"%s\" layer: %s", layerSavePath.c_str(), TfGetPathName(layerSavePath).c_str());
+            return nullptr;
+        }
+
+        return SdfLayer::CreateNew(layerSavePath);
+    }
+}
+
+std::string RprIpcClient::LayerController::GetLayerSavePath(const char* layerPath) {
+    return TfNormPath(TfStringPrintf("%s%s.usda", m_layersBindDir.c_str(), layerPath));
 }
 
 PXR_NAMESPACE_CLOSE_SCOPE

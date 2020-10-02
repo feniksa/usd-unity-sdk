@@ -45,10 +45,19 @@ public:
 
     /// \p serverAddress should be a valid zmq address in the form `tcp://ip:port`
     /// \p onStageUpdateCallback is a callback called on the update of the stage,
-    /// note that this callback will be called from the networking thread.
+    ///      note that this callback will be called from the networking thread.
+    /// \p layersBindDir is a directory path where all USD layers are bound on,
+    ///      when it's empty all layers created in-memory,
+    ///      i.e. RprIpcClient does not interact with the filesystem at all.
+    ///      It's necessary to emphasize that layer binding to the filesystem path
+    ///      does not mean that they will be saved to the disk. Whether layers should
+    ///      be saved to the disk is up to the user (use RprIpcClient::GetStage()->Save()).
+    ///      But if you want to support such composition arc as referencing you have
+    ///      to set \p layersBindDir to a non-empty path.
     RPR_IPC_API
     static RprIpcClientRefPtr Create(std::string const& serverAddress,
-                                     std::function<void()> onStageUpdateCallback);
+                                     std::function<void()> onStageUpdateCallback,
+                                     std::string const& layersBindDir = std::string());
 
     RPR_IPC_API
     ~RprIpcClient();
@@ -79,7 +88,8 @@ public:
 
 private:
     RprIpcClient(std::string const& serverAddress,
-                 std::function<void()> onStageUpdateCallback);
+                 std::function<void()> onStageUpdateCallback,
+                 std::string const& layersBindDir);
 
     void RunNetworkWorker();
 
@@ -120,10 +130,11 @@ private:
 private:
     class LayerController {
     public:
-        LayerController();
+        LayerController(std::string const& layersBindDir);
         ~LayerController();
 
         void AddLayer(std::string const& layerPath,
+                      bool isRoot,
                       char* encodedLayer,
                       size_t encodedLayerSize);
         void RemoveLayer(std::string const& layerPath);
@@ -133,19 +144,25 @@ private:
         UsdStagePtr GetStage() { return m_rootStage; }
 
     private:
+        UsdStageRefPtr CreateRootStage();
+        SdfLayerRefPtr CreateLayer(std::string const& layerPath);
         std::string GetLayerSavePath(const char* layerPath);
-        std::string GetLayerFilePath(const char* layerPath);
+        bool InMemoryMode() const { return m_layersBindDir.empty(); }
 
     private:
-        UsdStageRefPtr m_rootStage;
-        std::set<std::string> m_layers;
+        const std::string m_layersBindDir;
 
-        enum class LayerUpdateType {
-            Added,
-            Removed,
-            Edited
+        UsdStageRefPtr m_rootStage;
+        std::map<std::string, SdfLayerRefPtr> m_layers;
+        std::map<std::string, SdfLayerHandle> m_rootLayers;
+
+        enum ChangeTracker {
+            Clean = 0,
+            AllDirty = ~Clean,
+            DirtyLayers = 1 << 0,
+            DirtyRootLayers = 1 << 1,
         };
-        std::map<std::string, LayerUpdateType> m_updates;
+        uint32_t m_dirtyBits = AllDirty;
     };
 
 private:

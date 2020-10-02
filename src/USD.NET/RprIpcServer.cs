@@ -73,22 +73,29 @@ public class RprIpcServer : global::System.IDisposable {
     public Listener() : this(UsdCsPINVOKE.new_RprIpcServer_Listener(), true) {
     }
   
-    public virtual bool ProcessCommand(string command, SWIGTYPE_p_unsigned_char payload, uint pyaloadSize) {
-      bool ret = UsdCsPINVOKE.RprIpcServer_Listener_ProcessCommand(swigCPtr, command, SWIGTYPE_p_unsigned_char.getCPtr(payload), pyaloadSize);
+    public virtual bool ProcessCommand(string command, SWIGTYPE_p_unsigned_char payload, uint payloadSize) {
+      bool ret = UsdCsPINVOKE.RprIpcServer_Listener_ProcessCommand(swigCPtr, command, SWIGTYPE_p_unsigned_char.getCPtr(payload), payloadSize);
       if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
   
   }
 
-  public RprIpcServer(RprIpcServer.Listener Listener, string bind_address) : this(UsdCsPINVOKE.new_RprIpcServer__SWIG_0(RprIpcServer.Listener.getCPtr(Listener), bind_address), true) {
+  public RprIpcServer(RprIpcServer.Listener Listener, string bind_server) : this(UsdCsPINVOKE.new_RprIpcServer__SWIG_0(RprIpcServer.Listener.getCPtr(Listener), bind_server), true) {
   }
 
   public RprIpcServer(RprIpcServer.Listener Listener) : this(UsdCsPINVOKE.new_RprIpcServer__SWIG_1(RprIpcServer.Listener.getCPtr(Listener)), true) {
   }
 
+  public RprIpcServer.Layer AddLayer(SdfPath layerPath, bool isRoot) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.RprIpcServer_AddLayer__SWIG_0(swigCPtr, SdfPath.getCPtr(layerPath), isRoot);
+    RprIpcServer.Layer ret = (cPtr == global::System.IntPtr.Zero) ? null : new RprIpcServer.Layer(cPtr, false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public RprIpcServer.Layer AddLayer(SdfPath layerPath) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.RprIpcServer_AddLayer(swigCPtr, SdfPath.getCPtr(layerPath));
+    global::System.IntPtr cPtr = UsdCsPINVOKE.RprIpcServer_AddLayer__SWIG_1(swigCPtr, SdfPath.getCPtr(layerPath));
     RprIpcServer.Layer ret = (cPtr == global::System.IntPtr.Zero) ? null : new RprIpcServer.Layer(cPtr, false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -102,6 +109,12 @@ public class RprIpcServer : global::System.IDisposable {
   public void RemoveLayer(SdfPath layerPath) {
     UsdCsPINVOKE.RprIpcServer_RemoveLayer(swigCPtr, SdfPath.getCPtr(layerPath));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static string GetLayerReferencePath(SdfPath layerPath) {
+    string ret = UsdCsPINVOKE.RprIpcServer_GetLayerReferencePath(SdfPath.getCPtr(layerPath));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public class Layer : global::System.IDisposable {
@@ -134,11 +147,17 @@ public class RprIpcServer : global::System.IDisposable {
       }
     }
   
-    public Layer() : this(UsdCsPINVOKE.new_RprIpcServer_Layer(), true) {
+    public Layer(bool isRoot, string layerIdentifier) : this(UsdCsPINVOKE.new_RprIpcServer_Layer(isRoot, layerIdentifier), true) {
+      if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     }
   
     public UsdStageWeakPtr GetStage() {
       UsdStageWeakPtr ret = new UsdStageWeakPtr(UsdCsPINVOKE.RprIpcServer_Layer_GetStage(swigCPtr), true);
+      return ret;
+    }
+  
+    public bool IsRoot() {
+      bool ret = UsdCsPINVOKE.RprIpcServer_Layer_IsRoot(swigCPtr);
       return ret;
     }
   

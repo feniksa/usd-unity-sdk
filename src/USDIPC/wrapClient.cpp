@@ -36,8 +36,8 @@ void wrapClient() {
 
     scope s = class_<This, RprIpcClientPtr, boost::noncopyable>("Client", no_init)
         .def(TfPyRefAndWeakPtr())
-        .def("Create", +[](std::string const& serverAddress, OnStageUpdateCallback onStageUpdateCallback) {
-                return RprIpcClient::Create(serverAddress, onStageUpdateCallback);
+        .def("Create", +[](std::string const& serverAddress, OnStageUpdateCallback onStageUpdateCallback, std::string const& layersSaveDir) {
+                return RprIpcClient::Create(serverAddress, onStageUpdateCallback, layersSaveDir);
             },
             return_value_policy<TfPyRefPtrFactory<>>())
         .staticmethod("Create")

@@ -19,7 +19,11 @@ limitations under the License.
 PXR_NAMESPACE_OPEN_SCOPE
 
 TF_REGISTRY_FUNCTION(TfDebug) {
-    TF_DEBUG_ENVIRONMENT_SYMBOL(RPR_IPC_DEBUG_MESSAGES, "print debug messages");
+    TF_DEBUG_ENVIRONMENT_SYMBOL(RPR_IPC_DEBUG,
+        "enable debugging routines:\n"
+        "  - use filesystem SdfLayers in IPC client\n"
+        "  - log key actions"
+    );
 }
 
 PXR_NAMESPACE_CLOSE_SCOPE

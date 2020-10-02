@@ -18,16 +18,22 @@ limitations under the License.
 #include "zmqContext.h"
 
 #include "pxr/base/tf/stringUtils.h"
+#include "pxr/base/tf/pathUtils.h"
+#include "pxr/base/arch/fileSystem.h"
 
 PXR_NAMESPACE_OPEN_SCOPE
+
+#define USD_LAYER_EXTENSION ".usda"
 
 const char* const kInAppCommunicationSockAddr = "inproc://RprIpcServer";
 
 //------------------------------------------------------------------------------
 // Construction
 //------------------------------------------------------------------------------
+
 RprIpcServer::RprIpcServer(Listener* listener, const char* bind_address)
-    : m_listener(listener) {
+    : m_listener(listener)
+    , m_layersIdentifierPrefix(ArchGetTmpDir() + std::string(ARCH_PATH_SEP "ipcServer")) {
     auto& zmqContext = GetZmqContext();
 
     try {
@@ -65,20 +71,24 @@ RprIpcServer::~RprIpcServer() {
 // Layers management
 //------------------------------------------------------------------------------
 
-RprIpcServer::Layer* RprIpcServer::AddLayer(SdfPath const& layerPath) {
+RprIpcServer::Layer* RprIpcServer::AddLayer(SdfPath const& layerPath, bool isRoot) {
     std::lock_guard<std::mutex> lock(m_layersMutex);
     if (m_layers.count(layerPath)) {
         TF_CODING_ERROR("Duplicate layer with layerPath - %s", layerPath.GetText());
         return nullptr;
     }
-    return &m_layers[layerPath];
+    auto status = m_layers.emplace(
+        std::piecewise_construct,
+        std::forward_as_tuple(layerPath),
+        std::forward_as_tuple(isRoot, GetLayerIdentifier(layerPath.GetText())));
+    return &status.first->second;
 }
 
 void RprIpcServer::OnLayerEdit(SdfPath const& layerPath, Layer* layer) {
     layer->OnEdit();
     GetSender(&layer->m_cachedSender);
     if (layer->m_cachedSender) {
-        layer->m_cachedSender->SendLayer(layerPath, layer->GetEncodedStage());
+        layer->m_cachedSender->SendLayer(layerPath, layer->IsRoot(), layer->GetEncodedStage());
     }
 }
 
@@ -99,7 +109,13 @@ void RprIpcServer::RemoveLayer(SdfPath const& layerPath) {
     m_layers.erase(it);
 }
 
-RprIpcServer::Layer::Layer() : m_stage(UsdStage::CreateInMemory()) {
+std::string RprIpcServer::GetLayerReferencePath(SdfPath const& layerPath) {
+    return TfStringPrintf("%s" USD_LAYER_EXTENSION, layerPath.GetText() + 1);
+}
+
+RprIpcServer::Layer::Layer(bool isRoot, std::string const& identifier)
+    : m_isRoot(isRoot)
+    , m_stage(UsdStage::CreateNew(identifier)) {
     OnEdit();
 }
 
@@ -107,7 +123,7 @@ std::string const& RprIpcServer::Layer::GetEncodedStage() {
     if (m_stage && m_isEncodedStageDirty) {
         m_isEncodedStageDirty = false;
 
-        if (!m_stage->ExportToString(&m_encodedStage)) {
+        if (!m_stage->GetRootLayer()->ExportToString(&m_encodedStage)) {
             TF_RUNTIME_ERROR("Failed to export stage");
         }
     }
@@ -199,12 +215,13 @@ RprIpcServer::Sender::Sender(std::thread::id owningThread, zmq::socket_t* socket
 
 }
 
-void RprIpcServer::Sender::SendLayer(SdfPath const& layerPath, std::string layer) {
+void RprIpcServer::Sender::SendLayer(SdfPath const& layerPath, bool isRoot, std::string layer) {
     if (!m_pushSocket) return;
 
     try {
         m_pushSocket->send(GetZmqMessage(RprIpcTokens->layer), zmq::send_flags::sndmore);
         m_pushSocket->send(GetZmqMessage(layerPath.GetString()), zmq::send_flags::sndmore);
+        m_pushSocket->send(GetZmqMessage(int(isRoot)), zmq::send_flags::sndmore);
         m_pushSocket->send(zmq::message_t(layer.c_str(), layer.size()));
     } catch (zmq::error_t& e) {
         TF_RUNTIME_ERROR("Error on layer send: %d", e.num());
@@ -254,7 +271,7 @@ void RprIpcServer::ProcessControlSocket() {
     m_controlSocket.recv(msg);
 
     auto command = std::to_string(msg);
-    TF_DEBUG(RPR_IPC_DEBUG_MESSAGES).Msg("RprIpcServer: received \"%s\" command\n", command.c_str());
+    TF_DEBUG(RPR_IPC_DEBUG).Msg("RprIpcServer: received \"%s\" command\n", command.c_str());
 
     // Process any RprIpcServer specific commands first
     if (RprIpcTokens->connect == command) {
@@ -268,7 +285,7 @@ void RprIpcServer::ProcessControlSocket() {
                 m_dataSocket.connect(dataSocketAddr);
 
                 m_controlSocket.send(GetZmqMessage(RprIpcTokens->ok));
-                TF_DEBUG(RPR_IPC_DEBUG_MESSAGES).Msg("RprIpcServer: connected dataSocket to %s\n", dataSocketAddr.c_str());
+                TF_DEBUG(RPR_IPC_DEBUG).Msg("RprIpcServer: connected dataSocket to %s\n", dataSocketAddr.c_str());
 
                 SendAllLayers();
                 return;
@@ -297,14 +314,9 @@ void RprIpcServer::ProcessControlSocket() {
             payloadSize = msg.size();
         }
 
-		if (m_listener) {
-			auto response = m_listener->ProcessCommand(command, payload, payloadSize);
-			TF_DEBUG(RPR_IPC_DEBUG_MESSAGES).Msg("RprIpcServer: response for \"%s\" command: %d\n", command.c_str(), response);
-			m_controlSocket.send(GetZmqMessage(response ? RprIpcTokens->ok : RprIpcTokens->fail));
-		}
-		else {
-			m_controlSocket.send(GetZmqMessage(RprIpcTokens->ok));
-		}
+        auto response = m_listener->ProcessCommand(command, payload, payloadSize);
+        TF_DEBUG(RPR_IPC_DEBUG).Msg("RprIpcServer: response for \"%s\" command: %d\n", command.c_str(), response);
+        m_controlSocket.send(GetZmqMessage(response ? RprIpcTokens->ok : RprIpcTokens->fail));
     }
 }
 
@@ -329,19 +341,27 @@ void RprIpcServer::ProcessAppSocket() {
 void RprIpcServer::SendAllLayers() {
     std::lock_guard<std::mutex> lock(m_layersMutex);
     if (!m_layers.empty()) {
-        TF_DEBUG(RPR_IPC_DEBUG_MESSAGES).Msg("RprIpcServer: sending %zu layers\n", m_layers.size());
+        TF_DEBUG(RPR_IPC_DEBUG).Msg("RprIpcServer: sending %zu layers\n", m_layers.size());
 
         std::shared_ptr<Sender> sender;
         GetSender(&sender);
 
         if (sender) {
             for (auto& entry : m_layers) {
-                sender->SendLayer(entry.first, entry.second.GetEncodedStage());
+                sender->SendLayer(entry.first, entry.second.IsRoot(), entry.second.GetEncodedStage());
             }
         } else {
             TF_RUNTIME_ERROR("Failed to get sender to send all layers");
         }
     }
+}
+
+//------------------------------------------------------------------------------
+// Layer creation utility functions
+//------------------------------------------------------------------------------
+
+std::string RprIpcServer::GetLayerIdentifier(const char* layerPath) {
+    return TfNormPath(TfStringPrintf("%s%s" USD_LAYER_EXTENSION, m_layersIdentifierPrefix.c_str(), layerPath));
 }
 
 PXR_NAMESPACE_CLOSE_SCOPE

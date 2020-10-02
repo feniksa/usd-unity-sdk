@@ -50,10 +50,7 @@ public:
     };
 
     RPR_IPC_API
-    RprIpcServer();
-
-    RPR_IPC_API
-    RprIpcServer(Listener* Listener);
+    RprIpcServer(Listener* Listener, const char* bind_address = "tcp://127.0.0.1:*");
 
     RPR_IPC_API
     ~RprIpcServer();

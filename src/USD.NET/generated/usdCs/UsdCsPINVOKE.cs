@@ -29379,7 +29379,7 @@ class UsdCsPINVOKE {
   public static extern bool RprIpcServer_Listener_ProcessCommand(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, uint jarg4);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_RprIpcServer__SWIG_0")]
-  public static extern global::System.IntPtr new_RprIpcServer__SWIG_0();
+  public static extern global::System.IntPtr new_RprIpcServer__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_RprIpcServer__SWIG_1")]
   public static extern global::System.IntPtr new_RprIpcServer__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);

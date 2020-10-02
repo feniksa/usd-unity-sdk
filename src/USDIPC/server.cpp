@@ -26,20 +26,13 @@ const char* const kInAppCommunicationSockAddr = "inproc://RprIpcServer";
 //------------------------------------------------------------------------------
 // Construction
 //------------------------------------------------------------------------------
-
-RprIpcServer::RprIpcServer()
-    : RprIpcServer(nullptr)
-{
-}
-
-
-RprIpcServer::RprIpcServer(Listener* listener)
+RprIpcServer::RprIpcServer(Listener* listener, const char* bind_address)
     : m_listener(listener) {
     auto& zmqContext = GetZmqContext();
 
     try {
         m_controlSocket = zmq::socket_t(zmqContext, zmq::socket_type::rep);
-        m_controlSocket.bind("tcp://127.0.0.1:*");
+        m_controlSocket.bind(bind_address);
 
         m_appSocket = zmq::socket_t(zmqContext, zmq::socket_type::pull);
         m_appSocket.bind(kInAppCommunicationSockAddr);
@@ -55,7 +48,7 @@ RprIpcServer::RprIpcServer(Listener* listener)
     // For now, we expect the user to start viewer process manually
     {
         auto controlSocketAddr = GetSocketAddress(m_controlSocket);
-        printf("Waiting for connection on socket %s", controlSocketAddr.c_str());
+        printf("Waiting for connection on socket %s\n", controlSocketAddr.c_str());
     }
 
     m_networkThread = std::thread([this]() { RunNetworkWorker(); });

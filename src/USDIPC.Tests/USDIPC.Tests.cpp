@@ -6,7 +6,8 @@
 
 int main()
 {
-	pxr::RprIpcServer server();
+	pxr::RprIpcServer::Listener listener;
+	pxr::RprIpcServer server(&listener);
 
 	std::cout << "Hello World!\n";
 }

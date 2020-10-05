@@ -12,5 +12,7 @@ copy /y "src\UsdCs\x64\Release\UsdCs.pdb" "inst\"
 copy /y "src\USDIPC\x64\Release\USDIPC.dll" "inst\"
 copy /y "src\USDIPC\x64\Release\USDIPC.pdb" "inst\"
 
+copy /y "src\USDIPC\thirdparty\bin\libzmq-v141-mt-4_3_2.dll" "inst\"
+
 xcopy /Y "inst\USD.NET.*" "package\com.unity.formats.usd\Runtime\Plugins\"
 xcopy /Y "inst\UsdCs.*" "package\com.unity.formats.usd\Runtime\Plugins\x86_64\"

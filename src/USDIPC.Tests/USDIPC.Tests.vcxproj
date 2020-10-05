@@ -141,7 +141,8 @@
       <AdditionalDependencies>usd_ms.lib;USDIPC.lib;%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)\USDIPC\$(Platform)\$(Configuration)\*.dll $(ProjectDir)$(Platform)\$(Configuration)\</Command>
+      <Command>xcopy /Y $(SolutionDir)\USDIPC\$(Platform)\$(Configuration)\*.dll $(ProjectDir)$(Platform)\$(Configuration)\
+xcopy /Y $(SolutionDir)\USDIPC\thirdparty\bin\*.dll $(ProjectDir)$(Platform)\$(Configuration)\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

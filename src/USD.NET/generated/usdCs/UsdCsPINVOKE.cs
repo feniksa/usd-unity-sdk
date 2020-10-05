@@ -30207,6 +30207,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_Layer_GetStage")]
   public static extern global::System.IntPtr RprIpcServer_Layer_GetStage(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_Layer_GetStageRefPtr")]
+  public static extern global::System.IntPtr RprIpcServer_Layer_GetStageRefPtr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_Layer_IsRoot")]
   public static extern bool RprIpcServer_Layer_IsRoot(global::System.Runtime.InteropServices.HandleRef jarg1);
 

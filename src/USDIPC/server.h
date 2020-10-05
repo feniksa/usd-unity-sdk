@@ -102,6 +102,9 @@ public:
         UsdStagePtr GetStage() { return m_stage; };
 
 		RPR_IPC_API
+        UsdStageRefPtr GetStageRefPtr() { return m_stage; };
+
+		RPR_IPC_API
         bool IsRoot() const { return m_isRoot; }
 
     private:

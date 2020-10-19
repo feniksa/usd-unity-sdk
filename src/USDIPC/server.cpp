@@ -71,20 +71,20 @@ RprIpcServer::~RprIpcServer() {
 // Layers management
 //------------------------------------------------------------------------------
 
-RprIpcServer::Layer* RprIpcServer::AddLayer(SdfPath const& layerPath, bool isRoot) {
+RprIpcServer::Layer* RprIpcServer::AddLayer(const std::string& layerPath, bool isRoot) {
     std::lock_guard<std::mutex> lock(m_layersMutex);
     if (m_layers.count(layerPath)) {
-        TF_CODING_ERROR("Duplicate layer with layerPath - %s", layerPath.GetText());
+        TF_CODING_ERROR("Duplicate layer with layerPath - %s", layerPath.c_str());
         return nullptr;
     }
     auto status = m_layers.emplace(
         std::piecewise_construct,
         std::forward_as_tuple(layerPath),
-        std::forward_as_tuple(isRoot, GetLayerIdentifier(layerPath.GetText())));
+        std::forward_as_tuple(isRoot, GetLayerIdentifier(layerPath.c_str())));
     return &status.first->second;
 }
 
-void RprIpcServer::OnLayerEdit(SdfPath const& layerPath, Layer* layer) {
+void RprIpcServer::OnLayerEdit(const std::string& layerPath, Layer* layer) {
     layer->OnEdit();
     GetSender(&layer->m_cachedSender);
     if (layer->m_cachedSender) {
@@ -92,11 +92,11 @@ void RprIpcServer::OnLayerEdit(SdfPath const& layerPath, Layer* layer) {
     }
 }
 
-void RprIpcServer::RemoveLayer(SdfPath const& layerPath) {
+void RprIpcServer::RemoveLayer(std::string const& layerPath) {
     std::lock_guard<std::mutex> lock(m_layersMutex);
     auto it = m_layers.find(layerPath);
     if (it == m_layers.end()) {
-        TF_CODING_ERROR("Removing inexisting layer with layerPath - %s", layerPath.GetText());
+        TF_CODING_ERROR("Removing inexisting layer with layerPath - %s", layerPath.c_str());
         return;
     }
 
@@ -215,12 +215,12 @@ RprIpcServer::Sender::Sender(std::thread::id owningThread, zmq::socket_t* socket
 
 }
 
-void RprIpcServer::Sender::SendLayer(SdfPath const& layerPath, bool isRoot, std::string layer) {
+void RprIpcServer::Sender::SendLayer(const std::string& layerPath, bool isRoot, std::string layer) {
     if (!m_pushSocket) return;
 
     try {
         m_pushSocket->send(GetZmqMessage(RprIpcTokens->layer), zmq::send_flags::sndmore);
-        m_pushSocket->send(GetZmqMessage(layerPath.GetString()), zmq::send_flags::sndmore);
+        m_pushSocket->send(GetZmqMessage(layerPath), zmq::send_flags::sndmore);
         m_pushSocket->send(GetZmqMessage(int(isRoot)), zmq::send_flags::sndmore);
         m_pushSocket->send(zmq::message_t(layer.c_str(), layer.size()));
     } catch (zmq::error_t& e) {
@@ -228,12 +228,12 @@ void RprIpcServer::Sender::SendLayer(SdfPath const& layerPath, bool isRoot, std:
     }
 }
 
-void RprIpcServer::Sender::RemoveLayer(SdfPath const& layerPath) {
+void RprIpcServer::Sender::RemoveLayer(const std::string& layerPath) {
     if (!m_pushSocket) return;
 
     try {
         m_pushSocket->send(GetZmqMessage(RprIpcTokens->layerRemove), zmq::send_flags::sndmore);
-        m_pushSocket->send(GetZmqMessage(layerPath.GetString()));
+        m_pushSocket->send(GetZmqMessage(layerPath));
     } catch (zmq::error_t& e) {
         TF_RUNTIME_ERROR("Error on layer remove: %d", e.num());
     }

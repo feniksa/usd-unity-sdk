@@ -29388,16 +29388,16 @@ class UsdCsPINVOKE {
   public static extern void delete_RprIpcServer(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_AddLayer__SWIG_0")]
-  public static extern global::System.IntPtr RprIpcServer_AddLayer__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+  public static extern global::System.IntPtr RprIpcServer_AddLayer__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, bool jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_AddLayer__SWIG_1")]
-  public static extern global::System.IntPtr RprIpcServer_AddLayer__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern global::System.IntPtr RprIpcServer_AddLayer__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_OnLayerEdit")]
-  public static extern void RprIpcServer_OnLayerEdit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+  public static extern void RprIpcServer_OnLayerEdit(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_RemoveLayer")]
-  public static extern void RprIpcServer_RemoveLayer(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern void RprIpcServer_RemoveLayer(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_GetLayerReferencePath")]
   public static extern string RprIpcServer_GetLayerReferencePath(global::System.Runtime.InteropServices.HandleRef jarg1);

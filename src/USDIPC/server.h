@@ -68,19 +68,19 @@ public:
     /// There might be few root layers, in such case,
     /// they all combined through sublayering.
     RPR_IPC_API
-    Layer* AddLayer(SdfPath const& layerPath, bool isRoot = true);
+    Layer* AddLayer(const std::string& layerPath, bool isRoot = true);
 
     /// Notify server about layer changes. This call leads to layer encoding
     /// process and sending of the encoded stage to the client
     ///
     RPR_IPC_API
-    void OnLayerEdit(SdfPath const& layerPath, Layer* layer);
+    void OnLayerEdit(const std::string& layerPath, Layer* layer);
 
     /// Remove layer from the list of active layers.
     ///
     /// Note: removing inexisting layers results in TF_CODING_ERROR.
     RPR_IPC_API
-    void RemoveLayer(SdfPath const& layerPath);
+    void RemoveLayer(const std::string& layerPath);
 
     /// Return a path that can be used as reference assetPath (see SdfReference)
     RPR_IPC_API
@@ -153,7 +153,7 @@ private:
 
     /// Map with all currently alive layers.
     /// We keep track of all alive layers to be able to send them on client connection.
-    std::map<SdfPath, Layer> m_layers;
+    std::map<std::string, Layer> m_layers;
 
     /// Ensure thread-safety on layer creation/removal
     std::mutex m_layersMutex;
@@ -169,8 +169,8 @@ private:
     /// Sender should be used on the same thread it was created on. It can be created only with \c GetSender.
     class Sender {
     public:
-        void SendLayer(SdfPath const& layerPath, bool isRoot, std::string layer);
-        void RemoveLayer(SdfPath const& layerPath);
+        void SendLayer(const std::string& layerPath, bool isRoot, std::string layer);
+        void RemoveLayer(const std::string& layerPath);
 
     private:
         friend RprIpcServer;

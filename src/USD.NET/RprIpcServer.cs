@@ -87,27 +87,27 @@ public class RprIpcServer : global::System.IDisposable {
   public RprIpcServer(RprIpcServer.Listener Listener) : this(UsdCsPINVOKE.new_RprIpcServer__SWIG_1(RprIpcServer.Listener.getCPtr(Listener)), true) {
   }
 
-  public RprIpcServer.Layer AddLayer(SdfPath layerPath, bool isRoot) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.RprIpcServer_AddLayer__SWIG_0(swigCPtr, SdfPath.getCPtr(layerPath), isRoot);
+  public RprIpcServer.Layer AddLayer(string layerPath, bool isRoot) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.RprIpcServer_AddLayer__SWIG_0(swigCPtr, layerPath, isRoot);
     RprIpcServer.Layer ret = (cPtr == global::System.IntPtr.Zero) ? null : new RprIpcServer.Layer(cPtr, false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public RprIpcServer.Layer AddLayer(SdfPath layerPath) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.RprIpcServer_AddLayer__SWIG_1(swigCPtr, SdfPath.getCPtr(layerPath));
+  public RprIpcServer.Layer AddLayer(string layerPath) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.RprIpcServer_AddLayer__SWIG_1(swigCPtr, layerPath);
     RprIpcServer.Layer ret = (cPtr == global::System.IntPtr.Zero) ? null : new RprIpcServer.Layer(cPtr, false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public void OnLayerEdit(SdfPath layerPath, RprIpcServer.Layer layer) {
-    UsdCsPINVOKE.RprIpcServer_OnLayerEdit(swigCPtr, SdfPath.getCPtr(layerPath), RprIpcServer.Layer.getCPtr(layer));
+  public void OnLayerEdit(string layerPath, RprIpcServer.Layer layer) {
+    UsdCsPINVOKE.RprIpcServer_OnLayerEdit(swigCPtr, layerPath, RprIpcServer.Layer.getCPtr(layer));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void RemoveLayer(SdfPath layerPath) {
-    UsdCsPINVOKE.RprIpcServer_RemoveLayer(swigCPtr, SdfPath.getCPtr(layerPath));
+  public void RemoveLayer(string layerPath) {
+    UsdCsPINVOKE.RprIpcServer_RemoveLayer(swigCPtr, layerPath);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 

@@ -25,23 +25,24 @@ PXR_NAMESPACE_OPEN_SCOPE
 
 #define USD_LAYER_EXTENSION ".usda"
 
-const char* const kInAppCommunicationSockAddr = "inproc://RprIpcServer";
-
 //------------------------------------------------------------------------------
 // Construction
 //------------------------------------------------------------------------------
 
-RprIpcServer::RprIpcServer(Listener* listener, const char* bind_address)
+RprIpcServer::RprIpcServer(Listener* listener, const char* serverAddress)
     : m_listener(listener)
-    , m_layersIdentifierPrefix(ArchGetTmpDir() + std::string(ARCH_PATH_SEP "ipcServer")) {
+    , m_layersIdentifierPrefix(ArchMakeTmpSubdir(ArchGetTmpDir() + std::string(ARCH_PATH_SEP "ipcServer"), "usd")) {
     auto& zmqContext = GetZmqContext();
 
     try {
         m_controlSocket = zmq::socket_t(zmqContext, zmq::socket_type::rep);
-        m_controlSocket.bind(bind_address);
+        m_controlSocket.bind(serverAddress);
+
+        static std::atomic<int> s_appSocketCounter;
+        m_appSocketAddr = std::string("inproc://RprIpcServer") + std::to_string(s_appSocketCounter.fetch_add(1));
 
         m_appSocket = zmq::socket_t(zmqContext, zmq::socket_type::pull);
-        m_appSocket.bind(kInAppCommunicationSockAddr);
+        m_appSocket.bind(m_appSocketAddr.c_str());
     } catch (zmq::error_t& e) {
         throw std::runtime_error(TfStringPrintf("Failed to setup RprIpcServer sockets: %d", e.num()));
     }
@@ -62,7 +63,7 @@ RprIpcServer::RprIpcServer(Listener* listener, const char* bind_address)
 
 RprIpcServer::~RprIpcServer() {
     zmq::socket_t shutdownSocket(GetZmqContext(), zmq::socket_type::push);
-    shutdownSocket.connect(kInAppCommunicationSockAddr);
+    shutdownSocket.connect(m_appSocketAddr);
     shutdownSocket.send(GetZmqMessage(RprIpcTokens->shutdown));
     m_networkThread.join();
 }
@@ -71,7 +72,7 @@ RprIpcServer::~RprIpcServer() {
 // Layers management
 //------------------------------------------------------------------------------
 
-RprIpcServer::Layer* RprIpcServer::AddLayer(const std::string& layerPath, bool isRoot) {
+RprIpcServer::Layer* RprIpcServer::AddLayer(std::string const& layerPath, bool isRoot) {
     std::lock_guard<std::mutex> lock(m_layersMutex);
     if (m_layers.count(layerPath)) {
         TF_CODING_ERROR("Duplicate layer with layerPath - %s", layerPath.c_str());
@@ -84,7 +85,8 @@ RprIpcServer::Layer* RprIpcServer::AddLayer(const std::string& layerPath, bool i
     return &status.first->second;
 }
 
-void RprIpcServer::OnLayerEdit(const std::string& layerPath, Layer* layer) {
+void RprIpcServer::OnLayerEdit(std::string const& layerPath, Layer* layer) {
+
     layer->OnEdit();
     GetSender(&layer->m_cachedSender);
     if (layer->m_cachedSender) {
@@ -185,7 +187,7 @@ void RprIpcServer::GetSender(std::shared_ptr<Sender>* senderPtr) {
     zmq::socket_t pushSocket;
     try {
         pushSocket = zmq::socket_t(GetZmqContext(), zmq::socket_type::push);
-        pushSocket.connect(kInAppCommunicationSockAddr);
+        pushSocket.connect(m_appSocketAddr);
     } catch (zmq::error_t& e) {
         TF_RUNTIME_ERROR("Failed to create sender socket: %d", e.num());
         senderPtr->reset();
@@ -215,7 +217,7 @@ RprIpcServer::Sender::Sender(std::thread::id owningThread, zmq::socket_t* socket
 
 }
 
-void RprIpcServer::Sender::SendLayer(const std::string& layerPath, bool isRoot, std::string layer) {
+void RprIpcServer::Sender::SendLayer(std::string const& layerPath, bool isRoot, std::string layer) {
     if (!m_pushSocket) return;
 
     try {
@@ -228,7 +230,7 @@ void RprIpcServer::Sender::SendLayer(const std::string& layerPath, bool isRoot, 
     }
 }
 
-void RprIpcServer::Sender::RemoveLayer(const std::string& layerPath) {
+void RprIpcServer::Sender::RemoveLayer(std::string const& layerPath) {
     if (!m_pushSocket) return;
 
     try {

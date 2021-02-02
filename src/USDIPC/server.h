@@ -39,17 +39,17 @@ public:
     /// Each callback is called from the network thread
     class Listener {
     public:
-		Listener()          = default;
-		virtual ~Listener() = default;
+        Listener() = default;
+        virtual ~Listener() = default;
         /// The callback to receive commands sent by @see RprIpcClient#SendCommand
         virtual bool ProcessCommand(std::string const& command,
-			uint8_t* payload, size_t payloadSize) {
-			return false;
-		}
+                                    uint8_t* payload, size_t payloadSize) {
+            return false;
+        }
     };
 
     RPR_IPC_API
-    RprIpcServer(Listener* Listener, const char* bind_server = "tcp://127.0.0.1:*");
+    RprIpcServer(Listener* Listener, const char* serverAddress = "tcp://127.0.0.1:*");
 
     RPR_IPC_API
     ~RprIpcServer();
@@ -68,19 +68,19 @@ public:
     /// There might be few root layers, in such case,
     /// they all combined through sublayering.
     RPR_IPC_API
-    Layer* AddLayer(const std::string& layerPath, bool isRoot = true);
+    Layer* AddLayer(std::string const& layerPath, bool isRoot = true);
 
     /// Notify server about layer changes. This call leads to layer encoding
     /// process and sending of the encoded stage to the client
     ///
     RPR_IPC_API
-    void OnLayerEdit(const std::string& layerPath, Layer* layer);
+    void OnLayerEdit(std::string const& layerPath, Layer* layer);
 
     /// Remove layer from the list of active layers.
     ///
     /// Note: removing inexisting layers results in TF_CODING_ERROR.
     RPR_IPC_API
-    void RemoveLayer(const std::string& layerPath);
+    void RemoveLayer(std::string const& layerPath);
 
     /// Return a path that can be used as reference assetPath (see SdfReference)
     RPR_IPC_API
@@ -92,19 +92,16 @@ private:
 public:
     class Layer {
     public:
-		RPR_IPC_API
+        RPR_IPC_API
         Layer(bool isRoot, std::string const& layerIdentifier);
 
         /// Get UsdStage of the current layer. The returned stage can be edited
         /// directly. Any number of edits can be done to the stage. Calling
         /// RprIpcServer::OnLayerEdit is required to notify the client about changes.
-		RPR_IPC_API
+        RPR_IPC_API
         UsdStagePtr GetStage() { return m_stage; };
 
-		RPR_IPC_API
-        UsdStageRefPtr GetStageRefPtr() { return m_stage; };
-
-		RPR_IPC_API
+        RPR_IPC_API
         bool IsRoot() const { return m_isRoot; }
 
     private:
@@ -151,6 +148,9 @@ private:
     /// are using this socket as a sink that receives data from all senders (@see Sender).
     zmq::socket_t m_appSocket;
 
+    /// An address to which appSocket is bound
+    std::string m_appSocketAddr;
+
     /// Map with all currently alive layers.
     /// We keep track of all alive layers to be able to send them on client connection.
     std::map<std::string, Layer> m_layers;
@@ -169,8 +169,8 @@ private:
     /// Sender should be used on the same thread it was created on. It can be created only with \c GetSender.
     class Sender {
     public:
-        void SendLayer(const std::string& layerPath, bool isRoot, std::string layer);
-        void RemoveLayer(const std::string& layerPath);
+        void SendLayer(std::string const& layerPath, bool isRoot, std::string layer);
+        void RemoveLayer(std::string const& layerPath);
 
     private:
         friend RprIpcServer;

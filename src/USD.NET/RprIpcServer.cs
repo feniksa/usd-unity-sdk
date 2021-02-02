@@ -156,6 +156,12 @@ public class RprIpcServer : global::System.IDisposable {
       return ret;
     }
   
+    public UsdStage GetStageRefPtr() {
+      global::System.IntPtr cPtr = UsdCsPINVOKE.RprIpcServer_Layer_GetStageRefPtr(swigCPtr);
+      UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
+      return ret;
+    }
+  
     public bool IsRoot() {
       bool ret = UsdCsPINVOKE.RprIpcServer_Layer_IsRoot(swigCPtr);
       return ret;

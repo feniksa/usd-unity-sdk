@@ -81,7 +81,7 @@ public class RprIpcServer : global::System.IDisposable {
   
   }
 
-  public RprIpcServer(RprIpcServer.Listener Listener, string bind_server) : this(UsdCsPINVOKE.new_RprIpcServer__SWIG_0(RprIpcServer.Listener.getCPtr(Listener), bind_server), true) {
+  public RprIpcServer(RprIpcServer.Listener Listener, string serverAddress) : this(UsdCsPINVOKE.new_RprIpcServer__SWIG_0(RprIpcServer.Listener.getCPtr(Listener), serverAddress), true) {
   }
 
   public RprIpcServer(RprIpcServer.Listener Listener) : this(UsdCsPINVOKE.new_RprIpcServer__SWIG_1(RprIpcServer.Listener.getCPtr(Listener)), true) {
@@ -153,12 +153,6 @@ public class RprIpcServer : global::System.IDisposable {
   
     public UsdStageWeakPtr GetStage() {
       UsdStageWeakPtr ret = new UsdStageWeakPtr(UsdCsPINVOKE.RprIpcServer_Layer_GetStage(swigCPtr), true);
-      return ret;
-    }
-  
-    public UsdStage GetStageRefPtr() {
-      global::System.IntPtr cPtr = UsdCsPINVOKE.RprIpcServer_Layer_GetStageRefPtr(swigCPtr);
-      UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
       return ret;
     }
   

@@ -710,6 +710,7 @@ public class UsdRiPxrRodLightFilter : UsdLuxLightFilter {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiPxrRodLightFilter_schemaKind_get();
 }
 
 }

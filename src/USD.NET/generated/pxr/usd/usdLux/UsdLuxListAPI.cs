@@ -118,6 +118,7 @@ public class UsdLuxListAPI : UsdAPISchemaBase {
     UsdCsPINVOKE.UsdLuxListAPI_InvalidateLightList(swigCPtr);
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdLuxListAPI_schemaKind_get();
   public enum ComputeMode {
     ComputeModeConsultModelHierarchyCache,
     ComputeModeIgnoreCache

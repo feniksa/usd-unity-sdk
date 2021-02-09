@@ -240,6 +240,7 @@ public class UsdGeomSubset : UsdTyped {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomSubset_schemaKind_get();
 }
 
 }

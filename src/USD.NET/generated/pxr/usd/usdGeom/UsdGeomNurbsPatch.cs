@@ -446,6 +446,7 @@ public class UsdGeomNurbsPatch : UsdGeomPointBased {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomNurbsPatch_schemaKind_get();
 }
 
 }

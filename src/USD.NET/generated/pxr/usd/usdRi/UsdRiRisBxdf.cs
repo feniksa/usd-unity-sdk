@@ -73,6 +73,7 @@ public class UsdRiRisBxdf : global::System.IDisposable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiRisBxdf_schemaKind_get();
 }
 
 }

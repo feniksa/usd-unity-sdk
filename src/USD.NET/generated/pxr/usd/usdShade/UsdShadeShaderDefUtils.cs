@@ -52,6 +52,18 @@ public class UsdShadeShaderDefUtils : global::System.IDisposable {
     return ret;
   }
 
+  public static SWIGTYPE_p_std__vectorT_std__unique_ptrT_NdrProperty_t_t GetShaderProperties(UsdShadeConnectableAPI shaderDef) {
+    SWIGTYPE_p_std__vectorT_std__unique_ptrT_NdrProperty_t_t ret = new SWIGTYPE_p_std__vectorT_std__unique_ptrT_NdrProperty_t_t(UsdCsPINVOKE.UsdShadeShaderDefUtils_GetShaderProperties(UsdShadeConnectableAPI.getCPtr(shaderDef)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string GetPrimvarNamesMetadataString(SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata, UsdShadeConnectableAPI shaderDef) {
+    string ret = UsdCsPINVOKE.UsdShadeShaderDefUtils_GetPrimvarNamesMetadataString(SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata), UsdShadeConnectableAPI.getCPtr(shaderDef));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public UsdShadeShaderDefUtils() : this(UsdCsPINVOKE.new_UsdShadeShaderDefUtils(), true) {
   }
 

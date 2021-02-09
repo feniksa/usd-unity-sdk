@@ -204,6 +204,7 @@ public class UsdRiLightAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiLightAPI_schemaKind_get();
 }
 
 }

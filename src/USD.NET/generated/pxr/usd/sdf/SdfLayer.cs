@@ -58,64 +58,43 @@ public class SdfLayer : global::System.IDisposable {
     return ret;
   }
 
-  public static SdfLayer CreateNew(string identifier, string realPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateNew__SWIG_0(identifier, realPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args));
-    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static SdfLayer CreateNew(string identifier, string realPath) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateNew__SWIG_1(identifier, realPath);
+  public static SdfLayer CreateNew(string identifier, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateNew__SWIG_0(identifier, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args));
     SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static SdfLayer CreateNew(string identifier) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateNew__SWIG_2(identifier);
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateNew__SWIG_1(identifier);
     SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static SdfLayer CreateNew(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr fileFormat, string identifier, string realPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateNew__SWIG_3(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier, realPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args));
-    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static SdfLayer CreateNew(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr fileFormat, string identifier, string realPath) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateNew__SWIG_4(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier, realPath);
+  public static SdfLayer CreateNew(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr fileFormat, string identifier, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateNew__SWIG_2(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args));
     SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static SdfLayer CreateNew(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr fileFormat, string identifier) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateNew__SWIG_5(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier);
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateNew__SWIG_3(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier);
     SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static SdfLayer New(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr fileFormat, string identifier, string realPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_New__SWIG_0(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier, realPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args));
-    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static SdfLayer New(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr fileFormat, string identifier, string realPath) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_New__SWIG_1(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier, realPath);
+  public static SdfLayer New(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr fileFormat, string identifier, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_New__SWIG_0(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args));
     SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static SdfLayer New(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr fileFormat, string identifier) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_New__SWIG_2(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier);
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_New__SWIG_1(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier);
     SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -133,14 +112,14 @@ public class SdfLayer : global::System.IDisposable {
     return ret;
   }
 
-  public static SdfLayerHandle FindRelativeToLayer(SdfLayerHandle anchor, string layerPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
-    SdfLayerHandle ret = new SdfLayerHandle(UsdCsPINVOKE.SdfLayer_FindRelativeToLayer__SWIG_0(SdfLayerHandle.getCPtr(anchor), layerPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args)), true);
+  public static SdfLayerHandle FindRelativeToLayer(SdfLayerHandle anchor, string identifier, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
+    SdfLayerHandle ret = new SdfLayerHandle(UsdCsPINVOKE.SdfLayer_FindRelativeToLayer__SWIG_0(SdfLayerHandle.getCPtr(anchor), identifier, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static SdfLayerHandle FindRelativeToLayer(SdfLayerHandle anchor, string layerPath) {
-    SdfLayerHandle ret = new SdfLayerHandle(UsdCsPINVOKE.SdfLayer_FindRelativeToLayer__SWIG_1(SdfLayerHandle.getCPtr(anchor), layerPath), true);
+  public static SdfLayerHandle FindRelativeToLayer(SdfLayerHandle anchor, string identifier) {
+    SdfLayerHandle ret = new SdfLayerHandle(UsdCsPINVOKE.SdfLayer_FindRelativeToLayer__SWIG_1(SdfLayerHandle.getCPtr(anchor), identifier), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -154,6 +133,20 @@ public class SdfLayer : global::System.IDisposable {
 
   public static SdfLayer FindOrOpen(string identifier) {
     global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_FindOrOpen__SWIG_1(identifier);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfLayer FindOrOpenRelativeToLayer(SdfLayerHandle anchor, string identifier, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_FindOrOpenRelativeToLayer__SWIG_0(SdfLayerHandle.getCPtr(anchor), identifier, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args));
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfLayer FindOrOpenRelativeToLayer(SdfLayerHandle anchor, string identifier) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_FindOrOpenRelativeToLayer__SWIG_1(SdfLayerHandle.getCPtr(anchor), identifier);
     SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -176,6 +169,12 @@ public class SdfLayer : global::System.IDisposable {
   public static SdfLayer OpenAsAnonymous(string layerPath) {
     global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_OpenAsAnonymous__SWIG_2(layerPath);
     SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SWIGTYPE_p_SdfLayerHints GetHints() {
+    SWIGTYPE_p_SdfLayerHints ret = new SWIGTYPE_p_SdfLayerHints(UsdCsPINVOKE.SdfLayer_GetHints(swigCPtr), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -343,6 +342,12 @@ public class SdfLayer : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_std__setT_std__string_t GetExternalAssetDependencies() {
+    SWIGTYPE_p_std__setT_std__string_t ret = new SWIGTYPE_p_std__setT_std__string_t(UsdCsPINVOKE.SdfLayer_GetExternalAssetDependencies(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static bool SplitIdentifier(string identifier, SWIGTYPE_p_std__string layerPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t arguments) {
     bool ret = UsdCsPINVOKE.SdfLayer_SplitIdentifier(identifier, SWIGTYPE_p_std__string.getCPtr(layerPath), SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(arguments));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -366,18 +371,19 @@ public class SdfLayer : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void UpdateAssetInfo(string fileVersion) {
-    UsdCsPINVOKE.SdfLayer_UpdateAssetInfo__SWIG_0(swigCPtr, fileVersion);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
   public void UpdateAssetInfo() {
-    UsdCsPINVOKE.SdfLayer_UpdateAssetInfo__SWIG_1(swigCPtr);
+    UsdCsPINVOKE.SdfLayer_UpdateAssetInfo(swigCPtr);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public string GetDisplayName() {
     string ret = UsdCsPINVOKE.SdfLayer_GetDisplayName(swigCPtr);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SWIGTYPE_p_ArResolvedPath GetResolvedPath() {
+    SWIGTYPE_p_ArResolvedPath ret = new SWIGTYPE_p_ArResolvedPath(UsdCsPINVOKE.SdfLayer_GetResolvedPath(swigCPtr), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

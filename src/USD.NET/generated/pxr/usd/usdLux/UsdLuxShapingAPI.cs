@@ -226,6 +226,7 @@ public class UsdLuxShapingAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdLuxShapingAPI_schemaKind_get();
 }
 
 }

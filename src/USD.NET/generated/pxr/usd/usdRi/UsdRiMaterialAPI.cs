@@ -215,6 +215,7 @@ public class UsdRiMaterialAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiMaterialAPI_schemaKind_get();
 }
 
 }

@@ -183,6 +183,7 @@ public class UsdRiStatementsAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiStatementsAPI_schemaKind_get();
 }
 
 }

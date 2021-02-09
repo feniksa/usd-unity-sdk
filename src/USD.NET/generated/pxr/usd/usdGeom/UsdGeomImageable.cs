@@ -411,6 +411,7 @@ public class UsdGeomImageable : UsdTyped {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomImageable_schemaKind_get();
 }
 
 }

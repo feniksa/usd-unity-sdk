@@ -149,6 +149,7 @@ public class UsdModelAPI : UsdAPISchemaBase {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdModelAPI_schemaKind_get();
   public enum KindValidation {
     KindValidationNone,
     KindValidationModelHierarchy

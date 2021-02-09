@@ -116,6 +116,7 @@ public class UsdRiRisIntegrator : UsdTyped {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiRisIntegrator_schemaKind_get();
 }
 
 }

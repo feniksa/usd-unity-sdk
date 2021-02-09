@@ -116,6 +116,7 @@ public class UsdRiLightPortalAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiLightPortalAPI_schemaKind_get();
 }
 
 }

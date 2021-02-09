@@ -49,6 +49,7 @@ public class UsdAPISchemaBase : UsdSchemaBase {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdAPISchemaBase_schemaKind_get();
 }
 
 }

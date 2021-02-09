@@ -43,7 +43,7 @@ public class PcpLayerStackIdentifier : global::System.IDisposable {
   public PcpLayerStackIdentifier() : this(UsdCsPINVOKE.new_PcpLayerStackIdentifier__SWIG_0(), true) {
   }
 
-  public PcpLayerStackIdentifier(SdfLayerHandle rootLayer_, SdfLayerHandle sessionLayer_, ArResolverContext pathResolverContext_) : this(UsdCsPINVOKE.new_PcpLayerStackIdentifier__SWIG_1(SdfLayerHandle.getCPtr(rootLayer_), SdfLayerHandle.getCPtr(sessionLayer_), ArResolverContext.getCPtr(pathResolverContext_)), true) {
+  public PcpLayerStackIdentifier(SdfLayerHandle rootLayer_, SdfLayerHandle sessionLayer_, SWIGTYPE_p_ArResolverContext pathResolverContext_) : this(UsdCsPINVOKE.new_PcpLayerStackIdentifier__SWIG_1(SdfLayerHandle.getCPtr(rootLayer_), SdfLayerHandle.getCPtr(sessionLayer_), SWIGTYPE_p_ArResolverContext.getCPtr(pathResolverContext_)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -111,10 +111,10 @@ public class PcpLayerStackIdentifier : global::System.IDisposable {
     } 
   }
 
-  public ArResolverContext pathResolverContext {
+  public SWIGTYPE_p_ArResolverContext pathResolverContext {
     get {
       global::System.IntPtr cPtr = UsdCsPINVOKE.PcpLayerStackIdentifier_pathResolverContext_get(swigCPtr);
-      ArResolverContext ret = (cPtr == global::System.IntPtr.Zero) ? null : new ArResolverContext(cPtr, false);
+      SWIGTYPE_p_ArResolverContext ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_ArResolverContext(cPtr, false);
       return ret;
     } 
   }

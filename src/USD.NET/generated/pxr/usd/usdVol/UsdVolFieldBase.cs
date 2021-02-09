@@ -66,6 +66,7 @@ public class UsdVolFieldBase : UsdGeomBoundable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdVolFieldBase_schemaKind_get();
 }
 
 }

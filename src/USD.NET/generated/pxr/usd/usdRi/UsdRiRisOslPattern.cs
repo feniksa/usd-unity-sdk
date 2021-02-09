@@ -117,6 +117,7 @@ public class UsdRiRisOslPattern : global::System.IDisposable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiRisOslPattern_schemaKind_get();
 }
 
 }

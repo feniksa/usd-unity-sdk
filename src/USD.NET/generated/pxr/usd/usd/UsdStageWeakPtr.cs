@@ -115,8 +115,8 @@ public class UsdStageWeakPtr : global::System.IDisposable {
     return ret;
   }
 
-  public ArResolverContext GetPathResolverContext() {
-    ArResolverContext ret = new ArResolverContext(UsdCsPINVOKE.UsdStageWeakPtr_GetPathResolverContext(swigCPtr), true);
+  public SWIGTYPE_p_ArResolverContext GetPathResolverContext() {
+    SWIGTYPE_p_ArResolverContext ret = new SWIGTYPE_p_ArResolverContext(UsdCsPINVOKE.UsdStageWeakPtr_GetPathResolverContext(swigCPtr), true);
     return ret;
   }
 
@@ -328,6 +328,11 @@ public class UsdStageWeakPtr : global::System.IDisposable {
 
   public UsdPrimVector GetMasters() {
     UsdPrimVector ret = new UsdPrimVector(UsdCsPINVOKE.UsdStageWeakPtr_GetMasters(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdPrimVector GetPrototypes() {
+    UsdPrimVector ret = new UsdPrimVector(UsdCsPINVOKE.UsdStageWeakPtr_GetPrototypes(swigCPtr), true);
     return ret;
   }
 

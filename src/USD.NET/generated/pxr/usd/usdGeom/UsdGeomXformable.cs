@@ -562,6 +562,7 @@ public class UsdGeomXformable : UsdGeomImageable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomXformable_schemaKind_get();
 }
 
 }

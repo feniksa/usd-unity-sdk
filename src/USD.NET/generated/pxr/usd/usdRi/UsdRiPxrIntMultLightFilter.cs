@@ -116,6 +116,7 @@ public class UsdRiPxrIntMultLightFilter : UsdLuxLightFilter {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiPxrIntMultLightFilter_schemaKind_get();
 }
 
 }

@@ -116,6 +116,7 @@ public class UsdRiTextureAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiTextureAPI_schemaKind_get();
 }
 
 }

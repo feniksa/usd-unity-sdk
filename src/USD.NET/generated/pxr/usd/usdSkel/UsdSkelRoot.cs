@@ -78,6 +78,7 @@ public class UsdSkelRoot : UsdGeomBoundable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdSkelRoot_schemaKind_get();
 }
 
 }

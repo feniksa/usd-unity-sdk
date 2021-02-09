@@ -105,6 +105,7 @@ public class UsdGeomMotionAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomMotionAPI_schemaKind_get();
 }
 
 }

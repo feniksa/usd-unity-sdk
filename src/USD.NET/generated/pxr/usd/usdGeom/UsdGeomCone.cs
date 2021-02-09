@@ -172,6 +172,7 @@ public class UsdGeomCone : UsdGeomGprim {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomCone_schemaKind_get();
 }
 
 }

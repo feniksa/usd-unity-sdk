@@ -116,6 +116,7 @@ public class UsdRiRisObject : UsdShadeShader {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiRisObject_schemaKind_get();
 }
 
 }

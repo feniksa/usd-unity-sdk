@@ -284,6 +284,7 @@ public class UsdSkelBindingAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdSkelBindingAPI_schemaKind_get();
 }
 
 }

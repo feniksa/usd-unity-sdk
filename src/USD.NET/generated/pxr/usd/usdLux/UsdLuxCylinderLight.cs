@@ -139,6 +139,7 @@ public class UsdLuxCylinderLight : global::System.IDisposable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdLuxCylinderLight_schemaKind_get();
 }
 
 }

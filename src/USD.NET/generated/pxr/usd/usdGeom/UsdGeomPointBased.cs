@@ -195,6 +195,7 @@ public class UsdGeomPointBased : UsdGeomGprim {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomPointBased_schemaKind_get();
 }
 
 }

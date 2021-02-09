@@ -71,8 +71,13 @@ public class UsdSchemaBase : global::System.IDisposable {
     return ret;
   }
 
-  public UsdSchemaType GetSchemaType() {
-    UsdSchemaType ret = (UsdSchemaType)UsdCsPINVOKE.UsdSchemaBase_GetSchemaType(swigCPtr);
+  public UsdSchemaKind GetSchemaKind() {
+    UsdSchemaKind ret = (UsdSchemaKind)UsdCsPINVOKE.UsdSchemaBase_GetSchemaKind(swigCPtr);
+    return ret;
+  }
+
+  public UsdSchemaKind GetSchemaType() {
+    UsdSchemaKind ret = (UsdSchemaKind)UsdCsPINVOKE.UsdSchemaBase_GetSchemaType(swigCPtr);
     return ret;
   }
 
@@ -147,6 +152,7 @@ public class UsdSchemaBase : global::System.IDisposable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdSchemaBase_schemaKind_get();
 }
 
 }

@@ -248,6 +248,7 @@ public class UsdRiPxrAovLight : UsdLuxLight {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiPxrAovLight_schemaKind_get();
 }
 
 }

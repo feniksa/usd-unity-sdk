@@ -150,6 +150,7 @@ public class UsdRiSplineAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiSplineAPI_schemaKind_get();
 }
 
 }

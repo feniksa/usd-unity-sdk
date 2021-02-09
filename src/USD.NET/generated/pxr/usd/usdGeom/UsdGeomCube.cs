@@ -127,6 +127,7 @@ public class UsdGeomCube : UsdGeomGprim {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomCube_schemaKind_get();
 }
 
 }

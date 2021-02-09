@@ -644,6 +644,7 @@ public class UsdRiPxrBarnLightFilter : UsdLuxLightFilter {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiPxrBarnLightFilter_schemaKind_get();
 }
 
 }

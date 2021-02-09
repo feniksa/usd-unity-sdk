@@ -952,6 +952,7 @@ public class UsdRiPxrCookieLightFilter : UsdLuxLightFilter {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiPxrCookieLightFilter_schemaKind_get();
 }
 
 }

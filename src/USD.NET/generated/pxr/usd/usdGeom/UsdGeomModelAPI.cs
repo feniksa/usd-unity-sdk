@@ -354,6 +354,7 @@ public class UsdGeomModelAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomModelAPI_schemaKind_get();
 }
 
 }

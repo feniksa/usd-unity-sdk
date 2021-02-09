@@ -127,6 +127,7 @@ public class UsdGeomSphere : UsdGeomGprim {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomSphere_schemaKind_get();
 }
 
 }

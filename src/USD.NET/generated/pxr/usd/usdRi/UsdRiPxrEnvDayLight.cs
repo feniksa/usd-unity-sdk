@@ -336,6 +336,7 @@ public class UsdRiPxrEnvDayLight : UsdLuxLight {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiPxrEnvDayLight_schemaKind_get();
 }
 
 }

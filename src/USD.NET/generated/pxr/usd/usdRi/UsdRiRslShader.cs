@@ -94,6 +94,7 @@ public class UsdRiRslShader : UsdShadeShader {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiRslShader_schemaKind_get();
 }
 
 }

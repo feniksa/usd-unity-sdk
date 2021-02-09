@@ -182,6 +182,7 @@ public class UsdLuxShadowAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdLuxShadowAPI_schemaKind_get();
 }
 
 }

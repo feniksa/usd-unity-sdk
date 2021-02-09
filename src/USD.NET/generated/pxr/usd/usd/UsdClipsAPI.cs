@@ -382,6 +382,7 @@ public class UsdClipsAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdClipsAPI_schemaKind_get();
 }
 
 }

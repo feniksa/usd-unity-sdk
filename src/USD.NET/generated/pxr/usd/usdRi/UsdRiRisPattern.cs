@@ -72,6 +72,7 @@ public class UsdRiRisPattern : UsdRiRisObject {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdRiRisPattern_schemaKind_get();
 }
 
 }

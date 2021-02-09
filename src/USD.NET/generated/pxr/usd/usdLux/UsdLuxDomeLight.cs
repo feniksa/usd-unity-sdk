@@ -131,6 +131,7 @@ public class UsdLuxDomeLight : global::System.IDisposable {
     UsdCsPINVOKE.UsdLuxDomeLight_OrientToStageUpAxis(swigCPtr);
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdLuxDomeLight_schemaKind_get();
 }
 
 }

@@ -70,7 +70,7 @@ if __name__ == "__main__":
     # Disabled until this issue is resolved:
     # https://github.com/PixarAnimationStudios/USD/issues/658
     #
-    #print "Generating UsdVol "
-    #usdVol.genUsdVolTokens(usdPath, copyright)
+    print ("Generating UsdVol")
+    usdVol.genUsdVolTokens(usdPath, copyright)
 
 

@@ -31,7 +31,7 @@ PXR_NAMESPACE_OPEN_SCOPE
 
 RprIpcServer::RprIpcServer(Listener* listener, const char* serverAddress)
     : m_listener(listener)
-    , m_layersIdentifierPrefix(ArchMakeTmpSubdir(ArchGetTmpDir() + std::string(ARCH_PATH_SEP "ipcServer"), "usd")) {
+    , m_layersIdentifierPrefix(getLayerIdentifiedPrefix()) {
     auto& zmqContext = GetZmqContext();
 
     try {
@@ -66,6 +66,19 @@ RprIpcServer::~RprIpcServer() {
     shutdownSocket.connect(m_appSocketAddr);
     shutdownSocket.send(GetZmqMessage(RprIpcTokens->shutdown));
     m_networkThread.join();
+}
+
+std::string RprIpcServer::getLayerIdentifiedPrefix()
+{
+	char buffer[1024];
+	tmpnam_s(buffer, sizeof(buffer));
+
+	if (CreateDirectoryA(buffer, NULL) == 0) {
+		throw std::runtime_error(TfStringPrintf("Failed to create temporary directory %s", buffer));
+	}
+	return buffer;
+
+	//ArchMakeTmpSubdir(ArchGetTmpDir() + std::string(ARCH_PATH_SEP "ipcServer"), "usd")
 }
 
 //------------------------------------------------------------------------------

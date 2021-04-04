@@ -210,6 +210,8 @@ private:
 
 private:
     const std::string m_layersIdentifierPrefix;
+
+	std::string getLayerIdentifiedPrefix();
 };
 
 PXR_NAMESPACE_CLOSE_SCOPE

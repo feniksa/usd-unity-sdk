@@ -95,6 +95,8 @@ public:
 CsharpDelegate* CsharpDelegate::m_instance = NULL;
 
 #include <mutex>
+#include <clocale>
+#include <locale>
 std::once_flag reg;
 
 #if defined(_WIN64)
@@ -102,7 +104,10 @@ BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID l
 #endif
 #if defined(__APPLE__) || defined(__linux__)
 __attribute__((constructor)) void DllMain() {
-#endif
+#endif	
+	std::setlocale(LC_ALL, "C");
+	std::locale::global(std::locale("C"));
+	
   std::call_once(reg, [] {
     TfDiagnosticMgr::GetInstance().AddDelegate(CsharpDelegate::GetInstance());
   });

@@ -95,6 +95,9 @@ RprIpcServer::Layer* RprIpcServer::AddLayer(std::string const& layerPath, bool i
         std::piecewise_construct,
         std::forward_as_tuple(layerPath),
         std::forward_as_tuple(isRoot, GetLayerIdentifier(layerPath.c_str())));
+
+	m_layersOrder.push_back(layerPath);
+
     return &status.first->second;
 }
 
@@ -122,6 +125,11 @@ void RprIpcServer::RemoveLayer(std::string const& layerPath) {
     }
 
     m_layers.erase(it);
+
+	auto lit = std::find(m_layersOrder.begin(), m_layersOrder.end(), layerPath);
+	if (lit != m_layersOrder.end()) {
+		m_layersOrder.erase(lit);
+	}
 }
 
 std::string RprIpcServer::GetLayerReferencePath(SdfPath const& layerPath) {
@@ -355,20 +363,22 @@ void RprIpcServer::ProcessAppSocket() {
 
 void RprIpcServer::SendAllLayers() {
     std::lock_guard<std::mutex> lock(m_layersMutex);
-    if (!m_layers.empty()) {
-        TF_DEBUG(RPR_IPC_DEBUG).Msg("RprIpcServer: sending %zu layers\n", m_layers.size());
+	if (m_layers.empty())
+		return;
+    
+    TF_DEBUG(RPR_IPC_DEBUG).Msg("RprIpcServer: sending %zu layers\n", m_layers.size());
 
-        std::shared_ptr<Sender> sender;
-        GetSender(&sender);
-
-        if (sender) {
-            for (auto& entry : m_layers) {
-                sender->SendLayer(entry.first, entry.second.IsRoot(), entry.second.GetEncodedStage());
-            }
-        } else {
-            TF_RUNTIME_ERROR("Failed to get sender to send all layers");
-        }
-    }
+    std::shared_ptr<Sender> sender;
+    GetSender(&sender);
+	if (!sender)
+		TF_RUNTIME_ERROR("Failed to get sender to send all layers");
+        
+    for (const std::string& layerName : m_layersOrder) {
+		auto it = m_layers.find(layerName);
+		if (it != m_layers.end()) {
+			sender->SendLayer(it->first, it->second.IsRoot(), it->second.GetEncodedStage());
+		}
+    }    
 }
 
 //------------------------------------------------------------------------------

@@ -156,7 +156,10 @@ private:
 
     /// Map with all currently alive layers.
     /// We keep track of all alive layers to be able to send them on client connection.
-    std::map<std::string, Layer> m_layers;
+    std::unordered_map<std::string, Layer> m_layers;
+
+	// Order of adding layers in scene tree
+	std::vector<std::string> m_layersOrder;
 
     /// Ensure thread-safety on layer creation/removal
     std::mutex m_layersMutex;

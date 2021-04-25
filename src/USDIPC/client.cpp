@@ -55,7 +55,7 @@ RprIpcClient::RprIpcClient(
     : m_serverAddress(serverAddress)
     , m_dataSocket(GetZmqContext(), zmq::socket_type::pull)
     , m_onStageUpdate(std::move(onStageUpdateCallback))
-    , m_layerController(layersBindDir) {
+    , m_layerController(this, layersBindDir) {
     m_dataSocket.bind("tcp://0.0.0.0:*");
 
     auto dataSocketPort = GetSocketPort(m_dataSocket);
@@ -70,6 +70,8 @@ RprIpcClient::RprIpcClient(
         TF_RUNTIME_ERROR("Failed to connect to %s", m_serverAddress.c_str());
     }
 
+    configure();
+
     m_appSocket = zmq::socket_t(GetZmqContext(), zmq::socket_type::pair);
     m_appSocket.bind(kInAppCommunicationSockAddr);
 
@@ -80,6 +82,24 @@ RprIpcClient::~RprIpcClient() {
     if (m_appSocket) {
         m_appSocket.send(GetZmqMessage(RprIpcTokens->shutdown));
         m_networkThread.join();
+    }
+}
+
+void RprIpcClient::configure()
+{
+    zmq::message_t msg;
+    m_controlSocket.recv(msg);
+
+    static_assert(LayerFormat::USDA == 0, "Function expect USDA as 0. Please, check enum");
+    static_assert(LayerFormat::USD == 1, "Function expect USD as 1. Please, check enum");
+
+    if (msg.size() != 1)
+        return;
+
+    if (msg.data<char>()[0] == '1') {
+        m_layerFormat = LayerFormat::USD;
+    } else {
+        m_layerFormat = LayerFormat::USDA;
     }
 }
 
@@ -252,14 +272,14 @@ static std::string GetLayersBindDir(std::string const& userLayersBindDir) {
 }
 
 RprIpcClient::LayerController::LayerController(
+    RprIpcClient* rprIpcClient,
     std::string const& layersBindDir)
-    : m_layersBindDir(GetLayersBindDir(layersBindDir))
+    : m_rprIpcClient(rprIpcClient),
+      m_layersBindDir(GetLayersBindDir(layersBindDir))
     , m_rootStage(CreateRootStage()) {
-
 }
 
 RprIpcClient::LayerController::~LayerController() {
-
 }
 
 void RprIpcClient::LayerController::AddLayer(
@@ -352,7 +372,7 @@ UsdStageRefPtr RprIpcClient::LayerController::CreateRootStage() {
 
 SdfLayerRefPtr RprIpcClient::LayerController::CreateLayer(std::string const& layerPath) {
     if (InMemoryMode()) {
-        return SdfLayer::CreateAnonymous(layerPath + ".usda");
+        return SdfLayer::CreateAnonymous(layerPath + "." + to_string(m_rprIpcClient->layerFormat()));
     } else {
         auto layerSavePath = GetLayerSavePath(layerPath.c_str());
         if (!TfMakeDirs(TfGetPathName(layerSavePath), -1)) {
@@ -365,7 +385,8 @@ SdfLayerRefPtr RprIpcClient::LayerController::CreateLayer(std::string const& lay
 }
 
 std::string RprIpcClient::LayerController::GetLayerSavePath(const char* layerPath) {
-    return TfNormPath(TfStringPrintf("%s%s.usda", m_layersBindDir.c_str(), layerPath));
+    std::string fileFormat = to_string(m_rprIpcClient->layerFormat());
+    return TfNormPath(TfStringPrintf("%s%s.%s", m_layersBindDir.c_str(), layerPath, fileFormat.c_str()));
 }
 
 PXR_NAMESPACE_CLOSE_SCOPE

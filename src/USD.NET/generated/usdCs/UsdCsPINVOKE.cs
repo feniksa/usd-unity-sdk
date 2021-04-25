@@ -29369,6 +29369,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SetFusedDisplayColor")]
   public static extern bool SetFusedDisplayColor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_to_string")]
+  public static extern string to_string(int jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_RprIpcServer_Listener")]
   public static extern global::System.IntPtr new_RprIpcServer_Listener();
 
@@ -29379,10 +29382,13 @@ class UsdCsPINVOKE {
   public static extern bool RprIpcServer_Listener_ProcessCommand(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, uint jarg4);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_RprIpcServer__SWIG_0")]
-  public static extern global::System.IntPtr new_RprIpcServer__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+  public static extern global::System.IntPtr new_RprIpcServer__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, int jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_RprIpcServer__SWIG_1")]
-  public static extern global::System.IntPtr new_RprIpcServer__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+  public static extern global::System.IntPtr new_RprIpcServer__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_RprIpcServer__SWIG_2")]
+  public static extern global::System.IntPtr new_RprIpcServer__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_RprIpcServer")]
   public static extern void delete_RprIpcServer(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -29400,7 +29406,7 @@ class UsdCsPINVOKE {
   public static extern void RprIpcServer_RemoveLayer(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_RprIpcServer_GetLayerReferencePath")]
-  public static extern string RprIpcServer_GetLayerReferencePath(global::System.Runtime.InteropServices.HandleRef jarg1);
+  public static extern string RprIpcServer_GetLayerReferencePath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_RprIpcServer_Layer")]
   public static extern global::System.IntPtr new_RprIpcServer_Layer(bool jarg1, string jarg2);

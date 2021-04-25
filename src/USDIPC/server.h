@@ -15,6 +15,7 @@ limitations under the License.
 #define RPR_IMAGING_IPC_SERVER_H
 
 #include "zmqContext.h"
+#include "layerformat.h"
 
 #include "pxr/usd/sdf/path.h"
 #include "pxr/usd/usd/stage.h"
@@ -49,7 +50,7 @@ public:
     };
 
     RPR_IPC_API
-    RprIpcServer(Listener* Listener, const char* serverAddress = "tcp://127.0.0.1:*");
+    RprIpcServer(Listener* Listener, const char* serverAddress = "tcp://127.0.0.1:*", LayerFormat layerFormat = LayerFormat::USDA);
 
     RPR_IPC_API
     ~RprIpcServer();
@@ -84,7 +85,7 @@ public:
 
     /// Return a path that can be used as reference assetPath (see SdfReference)
     RPR_IPC_API
-    static std::string GetLayerReferencePath(SdfPath const& layerPath);
+    std::string GetLayerReferencePath(SdfPath const& layerPath);
 
 private:
     class Sender;
@@ -134,6 +135,8 @@ private:
     void ProcessAppSocket();
 
     void SendAllLayers();
+
+	void configureClientConnection();
 
 private:
     Listener* m_listener;
@@ -213,6 +216,7 @@ private:
 
 private:
     const std::string m_layersIdentifierPrefix;
+	const LayerFormat m_layerFormat;
 
 	std::string getLayerIdentifiedPrefix();
 };

@@ -4122,6 +4122,11 @@ public class UsdCs {
     return ret;
   }
 
+  public static string to_string(LayerFormat layerFormat) {
+    string ret = UsdCsPINVOKE.to_string((int)layerFormat);
+    return ret;
+  }
+
   public static readonly int PXR_USE_NAMESPACES = UsdCsPINVOKE.PXR_USE_NAMESPACES_get();
   public static readonly int JS_VALUE_API_VERSION = UsdCsPINVOKE.JS_VALUE_API_VERSION_get();
   public static readonly int USDGEOM_CYLINDER_API_VERSION = UsdCsPINVOKE.USDGEOM_CYLINDER_API_VERSION_get();

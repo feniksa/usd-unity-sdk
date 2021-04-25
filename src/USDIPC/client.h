@@ -19,6 +19,8 @@ limitations under the License.
 #include "pxr/usd/usd/stage.h"
 #include "pxr/base/tf/declarePtrs.h"
 
+#include "layerformat.h"
+
 #include <functional>
 #include <thread>
 #include <memory>
@@ -86,6 +88,8 @@ public:
 
     /// @}
 
+    LayerFormat layerFormat() const { return m_layerFormat; }
+
 private:
     RprIpcClient(std::string const& serverAddress,
                  std::function<void()> onStageUpdateCallback,
@@ -96,6 +100,8 @@ private:
     using MessageComposer = std::function<void(zmq::socket_t& socket)>;
     std::string TryRequest(MessageComposer messageComposer,
                            long timeoutMs = -1, int numRetries = 3);
+
+    void configure();
 
     void SetupControlSocket();
 
@@ -130,7 +136,7 @@ private:
 private:
     class LayerController {
     public:
-        LayerController(std::string const& layersBindDir);
+        LayerController(RprIpcClient* parent, std::string const& layersBindDir);
         ~LayerController();
 
         void AddLayer(std::string const& layerPath,
@@ -150,6 +156,7 @@ private:
         bool InMemoryMode() const { return m_layersBindDir.empty(); }
 
     private:
+        RprIpcClient* m_rprIpcClient;
         const std::string m_layersBindDir;
 
         UsdStageRefPtr m_rootStage;
@@ -167,6 +174,7 @@ private:
 
 private:
     LayerController m_layerController;
+    LayerFormat m_layerFormat;
 };
 
 PXR_NAMESPACE_CLOSE_SCOPE

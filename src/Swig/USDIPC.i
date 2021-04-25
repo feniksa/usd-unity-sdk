@@ -6,4 +6,8 @@
   #include "../USDIPC/server.h"
 %}
 
+%include "layerformat.i"
 %include "../USDIPC/server.h"
+
+
+

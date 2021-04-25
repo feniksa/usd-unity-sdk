@@ -29,7 +29,8 @@ PXR_NAMESPACE_OPEN_SCOPE
     (layer) \
     (layerRemove) \
     (ok) \
-    (fail)
+    (fail) \
+    (configuration)
 
 TF_DECLARE_PUBLIC_TOKENS(RprIpcTokens, RPR_IPC_API, RPR_IPC_TOKENS);
 

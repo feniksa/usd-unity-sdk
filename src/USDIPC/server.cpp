@@ -23,15 +23,14 @@ limitations under the License.
 
 PXR_NAMESPACE_OPEN_SCOPE
 
-#define USD_LAYER_EXTENSION ".usda"
-
 //------------------------------------------------------------------------------
 // Construction
 //------------------------------------------------------------------------------
 
-RprIpcServer::RprIpcServer(Listener* listener, const char* serverAddress)
+RprIpcServer::RprIpcServer(Listener* listener, const char* serverAddress, LayerFormat layerFormat)
     : m_listener(listener)
-    , m_layersIdentifierPrefix(getLayerIdentifiedPrefix()) {
+    , m_layersIdentifierPrefix(getLayerIdentifiedPrefix())
+    , m_layerFormat(layerFormat) {
     auto& zmqContext = GetZmqContext();
 
     try {
@@ -133,7 +132,7 @@ void RprIpcServer::RemoveLayer(std::string const& layerPath) {
 }
 
 std::string RprIpcServer::GetLayerReferencePath(SdfPath const& layerPath) {
-    return TfStringPrintf("%s" USD_LAYER_EXTENSION, layerPath.GetText() + 1);
+    return TfStringPrintf("%s%s", layerPath.GetText() + 1, to_string(m_layerFormat));
 }
 
 RprIpcServer::Layer::Layer(bool isRoot, std::string const& identifier)
@@ -307,10 +306,13 @@ void RprIpcServer::ProcessControlSocket() {
                 m_dataSocket = zmq::socket_t(GetZmqContext(), zmq::socket_type::push);
                 m_dataSocket.connect(dataSocketAddr);
 
-                m_controlSocket.send(GetZmqMessage(RprIpcTokens->ok));
+                m_controlSocket.send(GetZmqMessage(RprIpcTokens->ok), zmq::send_flags::sndmore);
                 TF_DEBUG(RPR_IPC_DEBUG).Msg("RprIpcServer: connected dataSocket to %s\n", dataSocketAddr.c_str());
 
-                SendAllLayers();
+				configureClientConnection();
+				
+				SendAllLayers();
+
                 return;
             } catch (zmq::error_t& e) {
                 TF_RUNTIME_ERROR("Failed to setup notify socket with address %s. Zmq error code: %d", dataSocketAddr.c_str(), e.num());
@@ -325,6 +327,8 @@ void RprIpcServer::ProcessControlSocket() {
         m_controlSocket.close();
     } else if (RprIpcTokens->ping == command) {
         m_controlSocket.send(GetZmqMessage(RprIpcTokens->ping));
+    } else if (RprIpcTokens->configuration == command) {
+        m_controlSocket.send(GetZmqMessage(static_cast<int>(m_layerFormat)));
     } else {
         // notify command listener about any other commands
 
@@ -341,6 +345,12 @@ void RprIpcServer::ProcessControlSocket() {
         TF_DEBUG(RPR_IPC_DEBUG).Msg("RprIpcServer: response for \"%s\" command: %d\n", command.c_str(), response);
         m_controlSocket.send(GetZmqMessage(response ? RprIpcTokens->ok : RprIpcTokens->fail));
     }
+}
+
+void RprIpcServer::configureClientConnection() 
+{
+    m_controlSocket.send(GetZmqMessage(static_cast<int>(m_layerFormat)));
+    TF_DEBUG(RPR_IPC_DEBUG).Msg("Configure client connection. Send defined server layer format to client");
 }
 
 void RprIpcServer::ProcessAppSocket() {
@@ -386,7 +396,7 @@ void RprIpcServer::SendAllLayers() {
 //------------------------------------------------------------------------------
 
 std::string RprIpcServer::GetLayerIdentifier(const char* layerPath) {
-    return TfNormPath(TfStringPrintf("%s%s" USD_LAYER_EXTENSION, m_layersIdentifierPrefix.c_str(), layerPath));
+    return TfNormPath(TfStringPrintf("%s%s.%s", m_layersIdentifierPrefix.c_str(), layerPath, to_string(m_layerFormat)));
 }
 
 PXR_NAMESPACE_CLOSE_SCOPE

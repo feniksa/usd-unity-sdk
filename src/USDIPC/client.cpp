@@ -87,16 +87,14 @@ RprIpcClient::~RprIpcClient() {
 
 void RprIpcClient::configure()
 {
-    zmq::message_t msg;
-    m_controlSocket.recv(msg);
-
     static_assert(LayerFormat::USDA == 0, "Function expect USDA as 0. Please, check enum");
     static_assert(LayerFormat::USD == 1, "Function expect USD as 1. Please, check enum");
 
-    if (msg.size() != 1)
-        return;
+    auto configReply = TryRequest([](zmq::socket_t& socket){});
 
-    if (msg.data<char>()[0] == '1') {
+    RPR_IPC_CLIENT_DEBUG_MSG("Get layer format from server\n");
+
+    if (configReply == "1") {
         m_layerFormat = LayerFormat::USD;
     } else {
         m_layerFormat = LayerFormat::USDA;
